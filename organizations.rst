@@ -3,24 +3,25 @@
 Organizations
 =============
 
-In the Keyclic app, an organization is an entity such as a company, a corporation, an association, school, etc to which feedbacks can be sent to be treated.
+In the Keyclic app, an organization is an entity such as a company, a corporation, an association, a school, etc. to which feedbacks can be sent to be treated.
 
-:ref:`members-no-roles` are users affiliated with an organization. One or more members can be administrators of that organization (see : :ref:`members-admin`). An organization has least one administrator.
+A :ref:`members-no-roles` is a user affiliated with an organization. One or more members can be administrators of that organization (see : :ref:`members-admin`). An organization has at least one administrator.
 
-:ref:`members-admin` can manage the scope of intervention of the organization by creating categories and places.
+An :ref:`members-admin` can manage the scope of intervention of the organization by creating categories and places.
 When a user creates a feedback, geographic coordinates of that feedback are always automatically given. Thus, the app can display all organizations and their category in that place.
 Then the user can choose which organization he wants to take care of the problem.
 
 .. _organizations-creation:
 
-Creation of an organization
----------------------------
+Creation
+--------
 
 All users can create an organization :
 
 .. code-block:: bash
 
     POST /organizations
+
 .. code-block:: json
 
     {
@@ -53,6 +54,7 @@ To add a new member to the organization :
 .. code-block:: bash
 
     POST /organizations/{organization}/members
+
 .. code-block:: json
 
     {
@@ -85,6 +87,7 @@ An admin can create places, corresponding to areas where the organization can ta
 .. code-block:: bash
 
     POST /organizations/{organization}/places
+
 .. code-block:: json
 
     {
@@ -150,6 +153,7 @@ Categories are the business sectors of an organization. An admin can create a ne
 .. code-block:: bash
 
     POST /organizations/{organization}/categories
+
 .. code-block:: json
 
     {
@@ -178,16 +182,16 @@ Manage partnership
 ------------------
 
 An organization can have partners, i.e organizations affiliated with it. This relationship is one-sided :
-
 an organization A is a partner of organization B, but B is not necessarily one of B.
 
-The partnership means that an admin can delegate a report to partner organization, in the previous example, A can delegate a report to B, but B cannot delegate to A.
+The partnership means that an admin can delegate a report to a partner organization. In the previous example, A can delegate a report to B, but B cannot delegate to A.
 
 To add a new partner to the organization, an admin will send the request :
 
 .. code-block:: bash
 
     POST /organizations/{organization}/relationships
+
 .. code-block:: json
 
     {

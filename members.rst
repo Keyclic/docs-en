@@ -7,7 +7,7 @@ When a user is part of an organization, he may receive from none to five roles, 
 
 These are five roles :
 
-- No role - Organization member
+- No role - Member
 - Administrator
 - Agent
 - Analytic
@@ -17,10 +17,10 @@ A user may be part of several organizations, therefore his roles among the organ
 
 .. _members-no-roles:
 
-No role - Organization member
------------------------------
+No role - Member
+----------------
 
-A user who gets affiliated with an organization becomes *organization member*. An *organization member* possesses the same basic functionalities as a simple user.
+A user who gets affiliated with an organization becomes a *member*. A *member* possesses the same basic functionalities as a simple user.
 
 This role adds the following possibilities :
 
@@ -28,7 +28,7 @@ This role adds the following possibilities :
 - Receive assignment to an intervention,
 - Edit an intervention (if assigned to said member) : change name, add pictures, change state, etc.
 
-All members share those rights and other may stack depending on the role.
+All members share those rights and other may stack if the member has more roles.
 
 Note : A user can be member of several organizations and an organization can have several members.
 
@@ -37,13 +37,12 @@ Note : A user can be member of several organizations and an organization can hav
 Administrator
 -------------
 
-Every user can create his own organization.
-
-The user who created the organization becomes member and admin of that organization, his role is *Admin*
+Every user can create his own organization. The user who created the organization becomes member and admin of that organization, his role is *Admin*.
 
 The admin has the following permissions added to his membership privileges :
 
 - Add new members,
+- Change the member's roles,
 - Manage the organization's categories,
 - Manage the organization's places,
 - Manage the organization's partners,
@@ -60,15 +59,14 @@ Note : A user can be *Admin* of several organizations and an organization can ha
 Agent
 -----
 
-« Agent » is a special role meant to members who make feedbacks only for their organization.
+« Agent » is a special role meant to members who only make feedbacks for their organization.
 
-An agent can the possibility to :
-Aux permissions et aux droits des « Membres d’organisation » s’ajoute les suivants :
+An agent has the possibility to :
 
 - Activate Pro Mode (cf infra: Feedback made in Pro Mode)
 - Make private feedbacks
 
-**Note : A user can only be an *Agent* of one organization but an organization can have several *Agents*.**
+**Note : A user can only be an Agent of one organization but an organization can have several Agents.**
 
 .. _members-stat:
 
@@ -105,7 +103,7 @@ To get a specific user :
 
     GET /people/{user}
 
-To filter users by email/pattern in email :
+To filter users by pattern in email :
 
 .. code-block:: bash
 

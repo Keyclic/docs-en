@@ -9,8 +9,8 @@ All users can make feedbacks. A user is automatically is detected with his authe
 
 .. _feedbacks-creation:
 
-Feedback creation
------------------
+Creation
+--------
 
 .. code-block:: bash
 
@@ -54,6 +54,7 @@ Then the user can add one or more pictures to his feedback :
 .. code-block:: bash
 
     POST /feedbacks/{feedback}/images
+
 .. code-block:: json
 
     {
@@ -62,8 +63,8 @@ Then the user can add one or more pictures to his feedback :
 
 For more informations on adding images, see :ref:`technical-files`.
 
-Match feedback with an organization
------------------------------------
+Match with an organization
+--------------------------
 
 The Keyclic service doesn't just collect feedbacks, it sends them if possible, as :ref:`reports`, to organizations capable of treating the feedback. Three cases are possible when transmitting a feedback :
 
@@ -73,12 +74,14 @@ The Keyclic service doesn't just collect feedbacks, it sends them if possible, a
 
 - If the feedback's coordinates are in a place where two or more organizations can take action, and the user didn't specify a category, then several reports are generated and sent to all organizations in the place. The first one to accept will treat the problem.
 
+For more informations about places, see :ref:`organizations-places`.
+
 .. _feedbacks-lifecycle:
 
-Feedback moderation and life cycle
-----------------------------------
+Moderation and life cycle
+-------------------------
 
-When a user creates a feedback, its state is PENDING_REVIEW : waiting moderation. A *moderator* will have to validate it (except special case :ref:`feedbacks-agent`).
+When a user creates a feedback, its state is PENDING_REVIEW : waiting moderation. A *moderator* will have to validate it (except special case : :ref:`feedbacks-agent`).
 
 See : :ref:`technical-states`
 
@@ -87,6 +90,7 @@ A *moderator* validates a feedback with the endpoint :
 .. code-block:: bash
 
     PATCH /feedbacks/{feedback}/state
+
 .. code-block:: json
 
     {
@@ -123,19 +127,19 @@ Agents (:ref:`agents`) can post feedbacks the same way as every user. What's mor
 Normal mode vs "Pro mode"
 -------------------------
 
-On the picture below, square A represents a place belonging to organization A, and square B to organization B
+On the picture below, square A represents a place belonging to organization A, and square B to organization B.
 
 Each dot is a feedback made by **a member of organization B**.
 
-In blue : feedbacks made in pro mode (pro mode set to true in the request).
-In red : feedbacks made in normal mode.
+- In blue : feedbacks made in pro mode (pro mode set to true in the request).
+- In red : feedbacks made in normal mode.
 
 .. image:: images/feedback_by_place.png
 
 .. _feedbacks-lifecycle-overview:
 
-Life cycle overview of a feedback
----------------------------------
+Life cycle overview
+-------------------
 
 .. image:: images/feedback_workflow.png
 
@@ -217,6 +221,7 @@ Users may comment feedbacks :
 .. code-block:: bash
 
     POST /feedbacks/{feedback}/comments
+
 .. code-block:: json
 
     {

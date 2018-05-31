@@ -19,7 +19,7 @@ For example, from "Vinci Mon Autoroute":
 .. _moderator:
 
 Moderator
--------------------------
+---------
 
 The *moderator* is a specific status given by the Keyclic service, who can **moderate** feedbacks from an *application* before they are sent as reports to the chosen organization.
 

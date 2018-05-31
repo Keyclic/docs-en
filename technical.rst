@@ -19,13 +19,13 @@ Useful links
 
 .. _technical-applications:
 
-Applications and Applications key
------------------------------------
+Applications and Application's key
+----------------------------------
 
 Every client of the API must send a key identifying his application in the request header
 
 If you are developing a client to work with an existing Keyclic application, you have to know the application's key.
-Else if you wish to develop a client for a new application, please contact the company Keyclic. They will create the new application, configure it and send you the corresponding key.
+Else if you wish to develop a client for a new application, please contact Keyclic. They will create the new application, configure it and send you the corresponding key.
 
 Examples of an application's key :
 
@@ -174,8 +174,8 @@ In the future, we won't precise every time that you may paginate with the *page*
 
 .. _technical-patch:
 
-Resource modification with PATCH
---------------------------------
+Resource modification
+---------------------
 
 In the Keyclic API, resource modification is made with the `PATCH <https://tools.ietf.org/html/rfc5789>`_ method. Unlike the `PUT <https://tools.ietf.org/html/rfc7231#section-4.3.4>`_ method, `PATCH <https://tools.ietf.org/html/rfc5789>`_ allows to modify a single or some properties of a resource without sending every property of the modified resource.
 
@@ -227,8 +227,8 @@ The field *path* indicates which property triggered the error (here: reporter), 
 
 .. _technical-states:
 
-Status change
--------------
+State change
+------------
 
 Several resources of the API possess a life cycle and a state for a given moment. Those resources are feedbacks, reports and operations.
 

@@ -4,7 +4,7 @@ Authentication and connection
 =============================
 
 The Keyclic API uses the `JSON Web Tokens <https://jwt.io/>`_ to secure data transfer. Every request to the API is made with an access token allowing the server to verify the user's identity.
-When logging in, the user "receives" the token. This page goes through the process of creating an account, modify an account, getting and using an accessToken.
+When logging in, the user "receives" the token. This page goes through the process of creating an account, modifying an account, getting and using an accessToken.
 
 For more informations on JWT standard, see : `JSON Web Tokens official website <https://jwt.io/>`_.
 
@@ -18,6 +18,7 @@ A new user account is created with this request :
 .. code-block:: bash
 
     POST /security/register
+
 .. code-block:: json
 
     {
@@ -29,16 +30,17 @@ This user gets a unique id and the role ROLE_USER, allowing him to use the API's
 
 .. _authentication-login:
 
-Login
------
+Log in
+------
 
-Login in consists in sending one's credentials to the server to get an accessToken which will be used in future requests.
+Log in consists in sending one's credentials to the server to get an accessToken which will be used in future requests.
 
 The connection is done like this :
 
 .. code-block:: bash
 
     POST /security/login
+
 .. code-block:: json
 
     {
@@ -53,7 +55,7 @@ If the credentials are known to the server, it returns an accessToken.
 Use the token
 -------------
 
-Almost every single request to the API needs the user to be authentified. The token is sent with the Authorization header with the prefix Bearer.
+Almost every single request to the API needs the user to be authenticated. The token is sent with the Authorization header with the prefix Bearer.
 
 For example, to get the list of all feedbacks of the com.keyclic.app application, a user uses the endpoint :
 
@@ -71,7 +73,7 @@ For example, to get the list of all feedbacks of the com.keyclic.app application
 All requests to the Keyclic API need an accessToken in the headers, except for the following endpoints :
 
 - new account (POST /security/register)
-- login (POST /security/login)
+- log in (POST /security/login)
 - password change request (POST /security/password/change-request)
 - password change (POST /security/password/change/{changePasswordToken})
 
@@ -87,6 +89,7 @@ First, he sends a request to change his password :
 .. code-block:: bash
 
     POST /security/password/change-request
+
 .. code-block:: json
 
     {
@@ -106,10 +109,11 @@ Then the user can change his password with :
 .. code-block:: bash
 
     POST /security/password/change/jrtVqBLxxoSA0c2hpsOBN-JQGQHGN3YXsKPMG1PWWWA
+
 .. code-block:: json
 
     {
-        "password":"password"
+        "password":"newPassword"
     }
 
 .. _authentication-user-edition:
@@ -125,7 +129,7 @@ For settings other than password, the user will request on this endpoint :
 
 For more information on PATCH request, see :ref:`technical-patch`.
 
-For example, to modify one's name :
+For example, to change one's last name :
 
 .. code-block:: json
 
