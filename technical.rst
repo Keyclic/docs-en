@@ -1,78 +1,79 @@
 .. _technical:
 
-Considérations techniques
+Technical considerations
 =========================
 
-L'API Keyclic est une **API REST**. Toutes les opérations sont effectuées via le protocole **https** et sécurisées par `JSON Web Tokens <https://jwt.io/>`_. Les données sont échangées exclusivement au format **JSON**.
+The Keyclic API is RESTful. Every operation is sent through **HTTPS** and is secured with `JSON Web Tokens <https://jwt.io/>`_. The data is sent only in **JSON** format.
 
-Le nom de domaine de l'API Keyclic est :
+The Keyclic API's domain name is :
 
 .. code-block:: bash
 
     api.keyclic.com
 
-Liens utiles
+Useful links
 ------------
 
-- `Spécification Swagger de l'API <https://api.keyclic.com/swagger.json>`_
-- `Documentation technique Restlet de l'API <https://keyclic.restlet.io/>`_
+- `API's Swagger <https://api.keyclic.com/swagger.json>`_
+- `API's Restlet technical documentation <https://keyclic.restlet.io/>`_
 
 .. _technical-applications:
 
-Applications et clés d'applications
+Applications and Applications key
 -----------------------------------
 
-Tout client de l'API doit transmettre dans les headers de chaque requête une clé définissant l'application sur laquelle il travaille.
+Every client of the API must send a key identifying his application in the request header
 
-Si vous développez un client pour travailler sur une application existante de Keyclic, vous devez connaître la clé de cette application. Si au contraire vous développez un client pour une nouvelle application, merci de vous adresser à la société Keyclic pour que celle-ci crée l'application et sa configuration et vous fournisse la clé correspondante.
+If you are developing a client to work with an existing Keyclic application, you have to know the application's key.
+Else if you wish to develop a client for a new application, please contact the company Keyclic. They will create the new organisation, configure it and send you the corresponding key.
 
-Exemples de clés d'applications :
+Examples of an application's key :
 
 - com.keyclic.app
 - com.keyclic.city
 - com.keyclic.highway
 
-Chaque requête doit donc préciser, dans ses headers, la valeur du paramètre X-Keyclic-App. Voir ci-dessous le paragraphe :ref:`technical-requests` pour la mise en œuvre.
+Then every request header has to contain a X-Keyclic-App field with a value like the examples above. Refer to this paragraph :ref:`technical-requests` for the "implementation".
 
-Notez cependant que la base utilisateurs est commune à toutes les applications Keyclic. De fait, les endpoints d'inscription et de connexion (voir : :ref:`authentication`) font exception à la règle ci-dessus : ces deux endpoints n'exigent pas qu'une clé d'application leur soit fournie.
+However, simple users are shared to all Keyclic applications. Therefore, login and register endpoints are exempt of the above rule (cf : :ref:`authentication`).
 
 .. _technical-requests:
 
-Requêtes
+Requests
 --------
 
-Dans cette documentation, chaque endpoint de l'API sera décrit par le chemin d'accès à la ressource précédé du `verbe HTTP <https://tools.ietf.org/html/rfc7231#section-4>`_.
+In this documentation, each API's endpoint will be described by an `HTTP verb <https://tools.ietf.org/html/rfc7231#section-4>`_ and the path to access the resource.
 
-Exemple :
+Example :
 
 .. code-block:: bash
 
     GET /feedbacks
 
-Le endpoint ci-dessus retourne toutes les observations. Son url véritable est 
+This endpoint returns every feedback. Its actual URL is
 
 .. code-block:: bash
 
     https://api.keyclic.com/feedbacks
 
-mais pour des raisons de concision, dans cette documentation, nous ne préciserons jamais le protocole ni le nom de domaine.
+but to avoid redundancy, in the following examples, we will show neither the protocol nor the domain name.
 
-Paramètres d'url
+URL's parameters
 ~~~~~~~~~~~~~~~~
 
-Dans cette documentation, les variables d'URI (exemples : identifiant d'une ressource, numéro de page, etc) seront exprimés entre accolades. Par exemple, pour récupérer une observation (feedback) donnée :
+In this documentation, URIs variables, such as a resource identifier, a page number, etc, will be between curly brackets. For example, to get a single feedback :
 
 .. code-block:: bash
 
     GET /feedbacks/{feedback}
 
-Dans l'API Keyclic, conformément aux principes d'architecture REST, les paramètres de filtrage sont toujours passés en "query string". Exemple :
+In the Keyclic API, in accordance with REST principles, the filtering parameters will always be in the query string. Example :
 
 .. code-block:: bash
 
     GET /feedbacks?page={page}
 
-Par ailleurs, pour une meilleure lisibilité, les paramètres d'uri seront écrits tels quels dans cette documentation, et non sous leur forme url encodée :
+Moreover, for a better visibility, URI's parametes will be written as such and not in their encoded URL form :
 
 .. code-block:: bash
 
@@ -81,35 +82,36 @@ Par ailleurs, pour une meilleure lisibilité, les paramètres d'uri seront écri
 Headers
 ~~~~~~~
 
-En plus des `headers conventionnels de HTTP/1.1 <https://tools.ietf.org/html/rfc7231#section-5>`_, l'API Keyclic accepte, et même exige dans la plupart des cas, le header **X-Keyclic-App**, correspondant à l'application utilisée (voir ci-dessus : :ref:`technical-applications`). Par exemple, pour récupérer toutes les observations sur l'application com.keyclic.app, la requête comportera le header :
+Besides `conventional HTTP/1.1 <https://tools.ietf.org/html/rfc7231#section-5>`_ headers, Keyclic API accept and in most cases require, the header **X-Keyclic-App**, corresponding
+to the application used (see above : :ref:`technical-applications`). For example, to get all feedbacks from the com.keyclic.app application, the request will have to contain the following header :
 
 .. code-block:: bash
 
     X-Keyclic-App : com.keyclic.app
 
-Tous les endpoints exigent que ce header soit fourni, à l'exception des endpoints de login et de changement de mot de passe. (voir : :ref:`authentication`)
+Every endpoint requires this header, except for login and password modification. (refer : :ref:`authentication`)
 
-Toutes les requêtes (à l'exception du login, du register et du changement de mot de passe) doivent aussi comporter le header Authorization afin d'authentifier l'utilisateur. (voir : :ref:`authentication`)
+Also, every request (except login, resgister and password modification) must contain the Authorization header (see : :ref:`authentication`).
 
 .. _technical-format:
 
-Format des requêtes et réponses
--------------------------------
+Request and response format
+---------------------------
 
-Le seul type de contenu accepté par l'API Keyclic est JSON. Vos requêtes devront donc comporter le header :
+The only type of content accepted by the Keyclic API is JSON. The request shall contain the header :
 
 .. code-block:: bash
 
     Content-type: application/json
 
-et le corps des requêtes devra toujours être formaté en JSON. Les réponses sont également toujours retournées au format JSON.
+and the body will always have to in JSON format. The responses are returned to the JSON format too.
 
 .. _technical-files:
 
-Envoi de fichiers
------------------
+Send files
+----------
 
-Tous les fichiers sont envoyés en base 64 à l'API. Voici par exemple l'ajout d'une image représentant un carré rouge d'1 pixel sur 1 sur une observation :
+Files are sent in base 64 to the API. Here is an example of adding an image to a feedback :
 
 .. code-block:: bash
 
@@ -126,21 +128,21 @@ Tous les fichiers sont envoyés en base 64 à l'API. Voici par exemple l'ajout d
 Pagination
 ----------
 
-Tous les endpoints permettant de récupérer une collection de ressources peuvent être paginés avec les filtres **page** et **limit**. Par exemple, pour récupérer la deuxième page des observations à raison de 5 observations par page :
+Endpoints sending a collection of resources can be paginated with the **page** and **limit** filters. For example, to get the second page of the feedbacks with 5 feedbacks per page :
 
 .. code-block:: bash
 
     POST /feedbacks?page=2&limit=5
 
-Par défaut, *page* a la valeur 1 et *limit* a la valeur 10. Ainsi le endpoint 
+By default, *page* is equal to 1 and *limit* to 10. Thus, the endpoint
 
 .. code-block:: bash
 
     POST /feedbacks
 
-retourne les 10 premières observations.
+returns the first 10 feedbacks.
 
-Le retour d'une collection contient les informations et liens nécessaires pour naviguer entre les pages de cette collection. Exemple de retour (partiel) de la liste des observations :
+When a collection is returned, the response will contain informations and links to browse the pages of that collection. Below an example (partial) of a list of feedbacks.
 
 .. code-block:: json
 
@@ -168,16 +170,16 @@ Le retour d'une collection contient les informations et liens nécessaires pour 
       }
     }
 
-Dans cette documentation, nous ne rappellerons pas systématiquement qu'il est possible de paginer avec les filtres *page* et *limit*, ceux-ci étant communs à tous les endpoints retournant une collection.
+In the future, we won't precise every time that you may paginate with the *page* et *limit* filters, those are the same for every endpoint returning a collection.
 
 .. _technical-patch:
 
-Modification de ressources avec la méthode PATCH
-------------------------------------------------
+Resource modification with PATCH
+--------------------------------
 
-Dans l'API Keyclic, la modification des ressources s'effectue avec la méthode `PATCH <https://tools.ietf.org/html/rfc5789>`_. Contrairement à la méthode `PUT <https://tools.ietf.org/html/rfc7231#section-4.3.4>`_, la méthode `PATCH <https://tools.ietf.org/html/rfc5789>`_ permet de modifier une seule propriété, ou une partie seulement des propriétés, d'une ressource, sans qu'il soit nécessaire d'en envoyer une représentation complète. Le format utilisé pour la description du patch est `JSON Patch <https://tools.ietf.org/html/rfc6902>`_. La seule opération acceptée par l'API lors d'un `PATCH <https://tools.ietf.org/html/rfc5789>`_ est l'opération *replace*. 
+In the Keyclic API, resource modification is made with the `PATCH <https://tools.ietf.org/html/rfc5789>`_ method. Unlike the `PUT <https://tools.ietf.org/html/rfc7231#section-4.3.4>`_ method, `PATCH <https://tools.ietf.org/html/rfc5789>`_ allows to modify a single or some properties of a resource without sending every property of the modified resource.
 
-À titre d'exemple, voici la modification de la popriété *billingEmailAddress* d'une organisation :
+Here is an example to change the property *billingEmailAddress* of an organization :
 
 .. code-block:: bash
 
@@ -185,38 +187,34 @@ Dans l'API Keyclic, la modification des ressources s'effectue avec la méthode `
 
 .. code-block:: json
 
-    [
-	    {
-		    "op":"replace",
-		    "path":"/billingEmailAddress",
-		    "value":"test@test.com"
-	    }
-    ]
+    {
+		    "billingEmailAddress": "test@test.com"
+	  }
 
 .. _technical-errors:
 
-Retours d'erreurs
------------------
+Errors
+------
 
-Toute erreur entraîne une réponse de code `4xx <https://tools.ietf.org/html/rfc7231#section-6.5>`_ reflétant le type d'erreur.
+Every error send a code `4xx <https://tools.ietf.org/html/rfc7231#section-6.5>`_ representing the type of error.
 
-Quand il s'agit d'une erreur de type `400 <https://tools.ietf.org/html/rfc7231#section-6.5.1>`_ (Bad Request), les raisons de l'erreur sont retournées.
+When an code `400 <https://tools.ietf.org/html/rfc7231#section-6.5.1>`_ (Bad Request) is returned, the reasons are sent.
 
-Les erreurs sont décrites au format `vdn.error <https://github.com/blongden/vnd.error>`_.
+Errors follow the format `vdn.error <https://github.com/blongden/vnd.error>`_.
 
-L'exemple suivant montre un retour d'erreur de validation. Le champ *path* indique la propriété sur laquelle porte l'erreur (ici : reporter), et le champ *message* indique la nature de l'erreur.
+The following example displays a validation error.
 
 .. code-block:: json
 
         {
-           "@context":"https:\/\/github.com\/blongden\/vnd.error",
+           "@context":"https://github.com/blongden/vnd.error",
            "@type":"ValidationError",
            "message":"Validation failed.",
            "total":1,
            "_embedded":{
               "errors":[
                  {
-                    "@context":"https:\/\/github.com\/blongden\/vnd.error",
+                    "@context":"https://github.com/blongden/vnd.error",
                     "@type":"Error",
                     "message":"Cette valeur ne doit pas \u00eatre vide.",
                     "path":"reporter"
@@ -225,20 +223,22 @@ L'exemple suivant montre un retour d'erreur de validation. Le champ *path* indiq
            }
         }
 
+The field *path* indicates which property triggered the error (here: reporter), and the field *message* explains the error.
+
 .. _technical-states:
 
-Changements de statut
----------------------
+Status change
+-------------
 
-Plusieurs ressources manipulées par l'API ont un cycle de vie et possèdent un certain statut à un instant donné. C'est le cas des observations, des rapports et des opérations.
+Several resources of the API possess a life cycle and a state for a given moment. Those resources are feedbacks, reports and operations.
 
-Pour ces ressources, l'état est toujours indiqué dans la réponse avec le paramètre *state*, et les actions possibles pour faire évoluer ce statut sont toujours indiquées sous le paramètre *stateTransitions*. Exemple :
+For these resources, the state is always indicated in the response with the field *state*, and the next possible actions to change this state are displayed in the parameter *stateTransitions*. Example :
 
 .. code-block:: bash
 
     GET reports/{report}
 
-Réponse (partielle) :
+Response (partial) :
 
 .. code-block:: json
 
@@ -254,11 +254,11 @@ Réponse (partielle) :
       }
     }
 
-Dans l'exemple ci-dessus, le rapport est en statut NEW et les actions possibles sur son statut sont *accept* et *refuse*.
+In the example above, the report has a state NEW and the possible actions on its state are *accept* and *refuse*.
 
-Tout changement de statut est effectué avec la méthode PATCH et l'opération *replace*, en précisant *transition* pour le path, et l'action à effectuer pour la valeur.
+Actions on the state of a resource is made through the PATCH method, with the path and the new value.
 
-Par exemple, pour accepter le rapport ci-dessus :
+For example, to accept a report :
 
 .. code-block:: bash
 
@@ -266,16 +266,11 @@ Par exemple, pour accepter le rapport ci-dessus :
 
 .. code-block:: json
 
-    [
-	    {
-		    "op":"replace",
-		    "path":"transition",
-		    "value":"accept"
-		
-	    }
-    ]
+    {
+		    transition": "accept"
+	  }
 
-La réponse nous informe que le rapport possède désormais le statut ACCEPTED, et que les actions possibes sont désormais *refuse*, *hold* et *progress* :
+This request will send the following response :
 
 .. code-block:: json
 
@@ -292,5 +287,6 @@ La réponse nous informe que le rapport possède désormais le statut ACCEPTED, 
       }
     }
 
-Les actions et status possibles pour chaque type de ressources sont décrits dans les sections idoines de cette documentation.
+The report's state is now ACCEPTED, and the next actions are *refuse*, *hold* and *progress*.
 
+Actions and states for each kind of resource are described in the appropriate sections of the documentation.

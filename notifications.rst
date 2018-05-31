@@ -3,27 +3,25 @@
 Notifications
 =============
 
-Le service Keyclic peut notifier des utilisateurs après que certaines actions sont réalisées.
+The Keyclic service can notify users when some actions are made.
 
 .. _notifications-table:
 
-Type des notifications émises suivant les actions
--------------------------------------------------
+Notifications sent by action
+----------------------------
 
 +------------------------------+-------------------------+------------------------------------------------------------------------+
-| Action                       | Type de notification    | Destinataire                                                           |
+| Action                       | Notification Type       | Target                                                                 |
 +==============================+=========================+========================================================================+
-| Création de rapport          | Email + Push smartphone | Les administrateurs de l'organisation                                  |
+| Report is created            | Email + Push smartphone | Administrators                                                         |
 +------------------------------+-------------------------+------------------------------------------------------------------------+
-| Clôture du rapport           | Push smartphone         | L'émetteur de l'observation (dont le rapport est issu)                 |
+| Report is closed             | Push smartphone         | The user who made the feedback                                         |
 |                              |                         |                                                                        |
-|                              |                         | Les personnes qui ont soutenu l'observation (dont le rapport est issu) |
+|                              |                         | Users who commented and supported to the feedback                      |
 +------------------------------+-------------------------+------------------------------------------------------------------------+
-| Assignation d'une opération  | Push smartphone         | Le membre assigné à l'opération                                        |
+| Operation assigned           | Push smartphone         | Member assigned to the operation                                       |
 +------------------------------+-------------------------+------------------------------------------------------------------------+
-| Exportation des rapports     | Email                   | L'administrateur courant de la session                                 |
+| Report(s) exported           | Email                   | Administrator who sent the request                                     |
 +------------------------------+-------------------------+------------------------------------------------------------------------+
-| Modération d'une observation | Push smartphone         | Les administrateurs de l'application                                   |
+| Feedback to moderate         | Push smartphone         | Moderators                                                             |
 +------------------------------+-------------------------+------------------------------------------------------------------------+
-
-

@@ -1,25 +1,23 @@
 .. _authentication:
 
-Authentification et connexion
+Authentication and connection
 =============================
 
-L'API Keyclic se base sur le standard `JSON Web Tokens <https://jwt.io/>`_ pour la sécurisation de l'échange des données. Toute requête à l'API est nécessairement effectuée en fournissant un jeton d'accès (accessToken) permettant au serveur de vérifier l'identité de l'utilisateur. Un endpoint permet à l'utilisateur d'obtenir ce jeton d'accès en fournissant son login et son mot de passe. Cette section détaille la création d'un compte, l'obtention et l'utilisation d'un accessToken, et la modification d'un compte utilisateur.
+The Keyclic API uses the `JSON Web Tokens <https://jwt.io/>`_ to secure data transfer. Every request to the API is made with an access token allowing the server to verify the user's identity.
+When logging in, the user "receives" the token. This page goes through the process of creating an account, modify an account, getting and using an accessToken.
 
-Pour plus d'informations sur le standard JWT, voir : `le site officiel de JSON Web Tokens <https://jwt.io/>`_.
+For more informations on JWT standard, see : `JSON Web Tokens official website <https://jwt.io/>`_.
 
 .. _authentication-account-creation:
 
-Création d'un compte utilisateur
---------------------------------
+Create a user account
+---------------------
 
-Un nouveau compte utilisateur est créé avec la requête :
+A new user account is created with this request :
 
 .. code-block:: bash
 
     POST /security/register
-
-Exemple :
-
 .. code-block:: json
 
     {
@@ -27,23 +25,20 @@ Exemple :
         "password":"test"
     }
 
-Le nouvel utilisateur se voit attribuer un identifiant unique et le rôle ROLE_USER, lui permettant d'utiliser les fonctionnalités de base de l'API.
+This user gets a unique id and the role ROLE_USER, allowing him to use the API's basic functionalities.
 
 .. _authentication-login:
 
-Connexion
----------
+Login
+-----
 
-La connexion consiste à envoyer ses credentials au serveur afin d'obtenir en retour un accessToken qui sera utilisé pour les requêtes ultérieures.
+Login in consists in sending one's credentials to the server to get an accessToken which will be used in future requests.
 
-La connexion s'effectue avec la requête :
+The connection is done like this :
 
 .. code-block:: bash
 
     POST /security/login
-
-Exemple :
-
 .. code-block:: json
 
     {
@@ -51,16 +46,16 @@ Exemple :
         "password":"test"
     }
 
-Si les credentials sont reconnus par le serveur, celui-ci retourne un accessToken qui sera utilisé par l'utilisateur pour ses futures requêtes.
+If the credentials are known to the server, it returns an accessToken.
 
 .. _authentication-using-token:
 
-Utilisation du token
---------------------
+Use the token
+-------------
 
-La quasi-totalité des requêtes à l'API nécessitent que l'utilisateur soit authentifié, c'est-à-dire qu'il fournisse son accessToken. Le token est envoyé dans l'en-tête Authorization de la requête, préfixé par Bearer.
+Almost every single request to the API needs the user to be authentified. The token is sent with the Authorization header with the prefix Bearer.
 
-Par exemple, pour récupérer la liste des feedbacks de l'application com.keyclic.app, un utilisateur utilise le endpoint :
+For example, to get the list of all feedbacks of the com.keyclic.app application, a user uses the endpoint :
 
 .. code-block:: bash
 
@@ -73,50 +68,44 @@ Par exemple, pour récupérer la liste des feedbacks de l'application com.keycli
         Authorization : Bearer eyJhbGciOiJSUzI1NiJ9.eyJyb2xlcyI6WyJPUkdBTklaQVRJT046QURNSU4iLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJ0ZXN0MjJAdGVzdC5jb20iLCJpcCI6Ijc3LjIwMy40NS40NCIsImV4cCI6MTQ4OTI0MTQ0NCwiaWF0IjoxNDg5MTU1MDQ0fQ.ZIqbBVSgJaXKj73IPYbFeEfie6FUIflv-ausUO-AAzVjPg8-jdhFv3nqsdOVJvE_AB4bXjME1CRVFI7xD2SYCA8V6E6H2-y0XZE8SN_XTpHGMxDvOP27C2VUNQfPwgeWxjXzlDopo_U9ybAEX4QdFhW14aeRgb9YWMDlzSD6VLgJO-LuprxX668Ajq5X9c8YND4D_p4WRDSQr8pqb3rTY9NQ6O34F-OpDJlAUYj0pwMehYWpywVKJHRMv9xCRRoI8HrU6H3J3wo-K2OtQVJi9XFZ8g8sohw_ZaasG7dohxrO-NtYSrOPXIXPI6kCDRuMi7sce06wfno1bC3jBoc83EhiBSBpDbWL98DSjPbF1SaCeE05aATfM5cMEXbnp8Iwh-QLxglE4M-ZISJ8VooxzJxa7cWLlFW-iu0XWVFWrMbYgmSoU0PKRQB47w_IOPxjWzDeMUTSA3esDwkxsYlNdS9SZe201EvI6zur5Ayot0PEGfAgex6Ew-eKOHAfnuDiqeLQLbWs4Y69FO2DooWUhkfVGdl-IGglDPgk2AOs3w19e7mx-Gmm8DlUUr-bK61NPPQ8dy7HPjXnU63-jbA17MAjHaRTO4eKopcZMWbpL-jgQjJltV3R5_0qNODaHCS_auZs2cyqFN0HL9Rred5g7t6Fxyk-8MyyX0GiTyHsp3c
 
 
-Toutes les requêtes à l'API Keyclic nécessitent l'envoi d'un accessToken dans les headers, à l'exception évidente des endpoints suivants :
+All requests to the Keyclic API need an accessToken in the headers, except for the following endpoints :
 
-- création d'un compte (POST /security/register)
+- new account (POST /security/register)
 - login (POST /security/login)
-- demande de changement de mot de passe
-- changement de mot de passe (POST /security/password/change/{changePasswordToken})
+- password change request (POST /security/password/change-request)
+- password change (POST /security/password/change/{changePasswordToken})
 
 .. _authentication-password-change:
 
-Modification du mot de passe
-----------------------------
+Password change
+---------------
 
-Un utilisateur qui souhaite modifier son mot de passe procède en deux étapes.
+A user who wishes to modify his password performs the next steps.
 
-Il effectue d'abord une demande de changement de mot passe :
+First, he sends a request to change his password :
 
 .. code-block:: bash
 
     POST /security/password/change-request
-
-Exemple :
-
 .. code-block:: json
 
     {
         "email":"test@test.com"
     }
 
-Cette requête envoie un email à l'utilisateur contenant un lien se terminant par un token de vérification. Exemple de lien :
+This request sends an email to the user with a link ending with a verification token. Example :
 
 .. code-block:: bash
 
     https://domain.com/#/password-reset/jrtVqBLxxoSA0c2hpsOBN-JQGQHGN3YXsKPMG1PWWWA
 
-Dans le lien ci-dessus, jrtVqBLxxoSA0c2hpsOBN-JQGQHGN3YXsKPMG1PWWWA est le jeton de changement de mot de passe. La portion d'url *https://domain.com/#/password-reset/* dépend de la configuration de l'application.
+In the link above, jrtVqBLxxoSA0c2hpsOBN-JQGQHGN3YXsKPMG1PWWWA is the token to be sent in the next request. This part of the URL *https://domain.com/#/password-reset/* depends on the application used.
 
-L'utilisateur peut ensuite changer son mot de passe avec :
+Then the user can change his password with :
 
 .. code-block:: bash
 
-    POST /security/password/change/-VtYMG0VnU8vHJdKUC_AqA_XpypI9kd8OmOvWj4NYMw
-
-Exemple :
-
+    POST /security/password/change/jrtVqBLxxoSA0c2hpsOBN-JQGQHGN3YXsKPMG1PWWWA
 .. code-block:: json
 
     {
@@ -125,27 +114,23 @@ Exemple :
 
 .. _authentication-user-edition:
 
-Modification des données utilisateur
-------------------------------------
+Change user settings
+--------------------
 
-Pour les données autres que le mot de passe, l'utilisateur requêtera sur le endpoint :
+For settings other than password, the user will request on this endpoint :
 
 .. code-block:: bash
 
     PATCH /people/{user}
 
-Pour plus d'informations sur les requêtes PATCH, voir la section :ref:`technical-patch`.
+For more information on PATCH request, see :ref:`technical-patch`.
 
-Par exemple, pour modifier son nom :
+For example, to modify one's name :
 
 .. code-block:: json
 
-    [
-      {
-        "op":"replace",
-        "path":"/familyName",
-        "value":"Nom de famille"
-      }
-    ]
+    {
+        "familyName": "Family name"
+    }
 
-Les champs qu'un utilisateur peut modifier sont : son nom (familyName), son prénom (givenName), sa photo (image), son travail (job), son adresse email (email).
+A user can change the following settings : his *familyName*, his *givenName*, his *image*, his *job* and his *email*.

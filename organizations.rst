@@ -1,48 +1,43 @@
 .. _organizations:
 
-Organisations
+Organizations
 =============
 
-Dans l'application Keyclic, une organisation est une entité telle que corporation, entreprise, département d'entreprise, association, école, institution, etc à laquelle peuvent être rattachées les observations faites par les utilisateurs.
+In the Keyclic app, an organization is an entity such as a company, a corporation, an association, school, etc to which feedbacks can be sent to be treated.
 
-Les :ref:`members-no-roles` sont des utilisateurs du service Keyclic rattachés à une organisation.
-Un ou plusieurs membres d'une organisation peuvent en être les administrateurs (voir : :ref:`members-organization-admin`). Une organisation possède au minimum un administrateur d'organisation.
+:ref:`members-no-roles` are users affiliated with an organization. One or more members can be administrators of that organization (see : :ref:`members-admin`). An organization has least one administrator.
 
-Les :ref:`members-organization-admin` peuvent définir les champs d'intervention de leur organisation en créant des catégories (exemple : voirie, transports, etc) et des zones de responsabilité.
-Quand un utilisateur crée une nouvelle observation, les coordonnées géographiques de cette observation sont toujours automatiquement précisées.
-Ainsi, l'application est en mesure de lui retourner l'ensemble des organisations et catégories qui ont une zone de responsabilité sur cette position.
-Ce qui lui permet de choisir la catégorie la plus adéquate à son observation.
+:ref:`members-admin` can manage the scope of intervention of the organization by creating categories and places.
+When a user creates a feedback, geographic coordinates of that feedback are always automatically given. Thus, the app can display all organizations and their category in that place.
+Then the user can choose which organization he wants to take care of the problem.
 
 .. _organizations-creation:
 
-Création d'une organisation
+Creation of an organization
 ---------------------------
 
-Tout utilisateur peut créer une nouvelle organisation :
+All users can create an organization :
 
 .. code-block:: bash
 
     POST /organizations
-
-Exemple :
-
 .. code-block:: json
 
     {
-        "name":"Nom de l'organisation",
+        "name":"organization name",
         "billingEmailAddress":"test@test.com",
         "notificationEmailAddress":"test@test.com"
     }
 
-L'utilisateur devient automatiquement membre et administrateur de cette nouvelle organisation.
+The user becomes member and admin of this new organization.
 
-Pour récupérer toutes les organisations de l'application :
+To get all organizations of an application :
 
 .. code-block:: bash
 
     GET /organizations
 
-Il est possible de filtrer la requête ci-dessus sur un point géographique (voir ci-dessous : :ref:`organizations-places`) :
+It's possible to filter results by geographic point (see below : :ref:`organizations-places`) :
 
 .. code-block:: bash
 
@@ -50,52 +45,46 @@ Il est possible de filtrer la requête ci-dessus sur un point géographique (voi
 
 .. _organizations-members:
 
-Gestion des membres
--------------------
+Manage members
+--------------
 
-Pour ajouter un nouveau membre à une organisation :
+To add a new member to the organization :
 
 .. code-block:: bash
 
     POST /organizations/{organization}/members
-
-Exemple :
-
 .. code-block:: json
 
     {
         "person":"63d07fc5-f4e6-471c-a8cc-3c3f227c8c2d"
     }
 
-Ce endpoint est réservé à un utilisateur possédant le rôle ORGANIZATION:ADMIN et membre de l'organisation {organization}.
+This endpoint is reserved to a user who is ORGANIZATION:ADMIN and member of the organization {organization}.
 
-Pour récupérer les membres d'une organisation :
+To get organization's members :
 
 .. code-block:: bash
 
     GET /people?organization={organization}
 
-Pour retirer un membre d'une organisation, un administrateur de cette organisation exécutera la requête :
+To remove a member from the organization, an admin will request :
 
 .. code-block:: bash
 
     DELETE /organizations/{organization}/members/{member}
 
-Pour plus d'informations sur le rôle ORGANIZATION:ADMIN et ses privilèges, voir :ref:`users-organization-admin`.
+For more informations on the role ORGANIZATION:ADMIN and its privileges, see :ref:`members-admin`.
 
 .. _organizations-places:
 
-Gestion des zones de responsabilité
------------------------------------
+Manage places
+-------------
 
-Un administrateur d'organisation peut créer des zones de responsabilité, correspondant aux lieux sur lesquels cette organisation intervient :
+An admin can create places, corresponding to areas where the organization can take actions :
 
 .. code-block:: bash
 
     POST /organizations/{organization}/places
-
-body :
-
 .. code-block:: json
 
     {
@@ -139,13 +128,13 @@ body :
         "elevation": 1
     }
 
-Pour récupérer toutes les zones de responsabilité de l'application :
+To get all places of the application :
 
 .. code-block:: bash
 
     GET /places
 
-La requête ci-dessus peut-être filtrée sur une organisation donnée et/ou sur un point géographique donné :
+This request may be filtered by organization and/or geographic points :
 
 .. code-block:: bash
 
@@ -153,35 +142,31 @@ La requête ci-dessus peut-être filtrée sur une organisation donnée et/ou sur
 
 .. _organizations-categories:
 
-Gestion des catégories
-----------------------
+Manage categories
+-----------------
 
-Les catégories sont les secteurs d'activité d'une organisation. Un administrateur d'organisation peut créer une nouvelle catégorie en lui donnant un nom, une couleur et une icône. L'icône sera choisie dans  `le jeu d'icônes de Font Awesome <http://fontawesome.io/icons/>`_.
-
+Categories are the business sectors of an organization. An admin can create a new category with a name, a color and an icon. The icon is chosen from `Font Awesome <http://fontawesome.io/icons/>`_.
 
 .. code-block:: bash
 
     POST /organizations/{organization}/categories
-
-Exemple :
-
 .. code-block:: json
 
     {
-        "name":"Nom de la catégorie",
+        "name":"Category's name",
         "color":"#ff0000",
         "icon":"fa-bug"
     }
 
-Les 3 propriétés name, color et icon peuvent être éditées par une requête PATCH (voir : :ref:`technical-patch`).
+Those 3 properties can be edited with a PATCH (see : :ref:`technical-patch`) request.
 
-Pour récupérer l'ensemble des catégories de l'application :
+To get all categories of the application :
 
 .. code-block:: bash
 
     GET /categories
 
-La requête ci-dessus peut-être filtrée sur une organisation donnée et/ou sur un point géographique donné :
+This request may be filtered by organization and/or geographic points :
 
 .. code-block:: bash
 
@@ -189,30 +174,30 @@ La requête ci-dessus peut-être filtrée sur une organisation donnée et/ou sur
 
 .. _organizations-relationships:
 
-Gestion des partenariats
-------------------------
+Manage partnership
+------------------
 
-Une organisation peut avoir des partenaires, c'est-à-dire des organisations qui lui sont rattachées et à qui l'administrateur de l'organisation pourra déléguer des rapports. La relation de partenariat est unilatérale : si une organisation A est partenaire d'une organisation B, B n'est pas forcément partenaire de A.
+An organization can have partners, i.e organizations affiliated with it. This relationship is one-sided :
 
-Pour ajouter un nouveau partenaire à l'organisation, un administrateur de l'organisation exécutera le endpoint :
+an organization A is a partner of organization B, but B is not necessarily one of B.
+
+The partnership means that an admin can delegate a report to partner organization, in the previous example, A can delegate a report to B, but B cannot delegate to A.
+
+To add a new partner to the organization, an admin will send the request :
 
 .. code-block:: bash
 
     POST /organizations/{organization}/relationships
-
-Exemple :
-
 .. code-block:: json
 
     {
         "organization":"84d36093-b8bc-47ad-bc8a-a043b3e301a9"
     }
 
-Pour récupérer les partenaires d'une organisation :
+To get an organization's partners :
 
 .. code-block:: bash
 
     GET /organizations/{organization}/relationships
 
-Cette requête ne peut être exécutée que par un administrateur de l'organisation.
-
+The request is only available for admins.

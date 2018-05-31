@@ -1,22 +1,22 @@
 .. _feedbacks:
 
-Observations
-============
+feedbacks
+=========
 
-Une observation est toujours faite en une position géographique donnée. La position géographique est la composante la plus importante, et la seule obligatoire, d'une observation. Les paramètres optionnels étant la description, la catégorie, et éventuellement une ou plusieurs photos.
+A feedback is always made in a given geographic point. This point is the most important and only mandatory component of a feedback. Optional parameters are the description, category, visibility and picture(s).
 
-Tous les utilisateurs peuvent créer des observations.
+All users can make feedbacks. A user is automatically is detected with his authentication.
 
 .. _feedbacks-creation:
 
-Création d'une observation
---------------------------
+Feedback creation
+-----------------
 
 .. code-block:: bash
 
     POST /feedbacks/issues
 
-Exemple du minimum requis pour effectuer une observation, une observation est créée sans catégorie et sans description. L'utilisateur émettant cette observation est détecté automatiquement grâce à l'authentification.
+Minimal example of a feedback :
 
 .. code-block:: json
 
@@ -25,13 +25,13 @@ Exemple du minimum requis pour effectuer une observation, une observation est cr
         "geo": {
             "elevation": 1,
             "point": {
-                "latitude": 44.851343361295214,
-                "longitude": -0.5763262510299683
+                "latitude": 44.851343,
+                "longitude": -0.576326
             }
         }
     }
 
-Exemple plus complet, une catégorie et une description sont précisées :
+Complete example :
 
 .. code-block:: json
 
@@ -42,180 +42,166 @@ Exemple plus complet, une catégorie et une description sont précisées :
         "geo": {
             "elevation":1,
             "point": {
-                "latitude":44.851343361295214,
-                "longitude":-0.5763262510299683
+                "latitude":44.851343,
+                "longitude":-0.576326
             }
         },
         "visibility": "VISIBILITY_PUBLIC"
     }
 
-L'utilisateur peut ensuite ajouter une ou plusieurs images à son observation :
+Then the user can add one or more pictures to his feedback :
 
 .. code-block:: bash
 
     POST /feedbacks/{feedback}/images
-
-Exemple :
-
 .. code-block:: json
 
     {
         "image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QIVDRUfvq7u+AAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAAUSURBVAjXY3wrIcGABJgYUAGpfABZiwEnbOeFrwAAAABJRU5ErkJggg=="
     }
 
-Pour plus d'informations sur l'envoi d'images, voir :ref:`technical-files`.
+For more informations on adding images, see :ref:`technical-files`.
 
-Rattachement d'une observation à une organisation
--------------------------------------------------
+Match feedback with an organization
+-----------------------------------
 
-Le service Keyclic ne se contente pas de recueillir des observations : elle les fait ensuite remonter, sous la forme de :ref:`reports`, aux organisations concernées, qui en assureront le traitement. Toute observation doit donc être, dans la mesure du possible, remontée à une organisation sous la forme d'un rapport. Pour cela, quatre cas de figure peuvent se présenter :
+The Keyclic service doesn't just collect feedbacks, it sends them if possible, as :ref:`reports`, to organizations capable of treating the feedback. Three cases are possible when transmitting a feedback :
 
-- Si la position géographique de l'observation ne correspond à aucune zone de responsabilité, alors l'API retournera une erreur 409 et aucune organisation ne recevra de rapport sur cette observation.
+- If the feedback's coordinates aren't in a place, then no organization will receive a report on the feedback.
 
-- Si la position géographique de l'observation se trouve dans une zone de responsabilité définie par une organisation, alors le rapport de l'observation est automatiquement remonté à l'organisation en question.
+- If the feedback's coordinates are in a place, then the report is sent the the organization in charge of the place.
 
-- Si la position géographique de l'observation se trouve sur deux (ou plus) zones de responsabilité appartenant à deux (ou plus) organisations différentes, mais que l'utilisateur n'a pas précisé de catégorie, alors plusieurs rapports sont générés et remontés à toutes les organisations concernées. La première organisation qui acceptera le rapport pourra en effectuer le traitement.
+- If the feedback's coordinates are in a place where two or more organizations can take action, and the user didn't specify a category, then several reports are generated and sent to all organizations in the place. The first one to accept will treat the problem.
 
-.. _feedbacks-lifecyle:
+.. _feedbacks-lifecycle:
 
-Modération et cycle de vie d'une observation
---------------------------------------------
+Feedback moderation and life cycle
+----------------------------------
 
-Après qu'un utilisateur a créé une nouvelle observation, celle-ci possède le statut PENDING_REVIEW : en attente de modération. Elle devra être validée par un *administrateur d'application* (sauf cas particulier d'une :ref:`feedbacks-organization-member`).
+When a user creates a feedback, its state is PENDING_REVIEW : waiting moderation. A *moderator* will have to validate it (except special case :ref:`feedbacks-organization-member`).
 
-Voir : :ref:`technical-states`
+See : :ref:`technical-states`
 
-Un *administrateur d'application* valide une observation avec le endpoint :
+A *moderator* validates a feedback with the endpoint :
 
 .. code-block:: bash
 
-    POST /feedbacks/{feedback}/state
-
-Exemple :
-
+    PATCH /feedbacks/{feedback}/state
 .. code-block:: json
 
-    [
-        {
-            "op":"replace",
-            "path":"transition",
-            "value":"accept"
-        }
-    ]
+    {
+        "transition": "accept"
+    }
 
-L'observation prend alors le statut DELIVERED et un rapport est créé sur cette observation.
+The feedback's state is now DELIVERED and a report is created.
 
-Voir : :ref:`reports`
+See : :ref:`reports`
 
-Pour refuser une observation :
+To refuse a feedback :
 
 .. code-block:: bash
 
-    [
-        {
-            "op":"replace",
-            "path":"transition",
-            "value":"refuse"
-        }
-    ]
+    {
+        "transition": "refuse"
+    }
 
-L'observation prend alors le statut REFUSED.
+The feedback's state is REFUSED. No report is created.
 
 .. _feedbacks-organization-member:
 
-Observation postée par un membre d'organisation
------------------------------------------------
+Feedbacks by organization member
+--------------------------------
 
-Les membres (:ref:`members`) peuvent poster des observations de la même façon que tous les utilisateurs. Cependant, si un membre d'organisation fournit, dans sa requête, l'identifiant de son organisation, il entre dans le mode de fonctionnement que nous avons appelé le "mode pro", et son observation pourra être traitée différemment :
+Agents (:ref:`agents`) can post feedbacks the same way as every user. What's more, an agent can enter in "pro mode". To do so, the field "proMode" with the value "true" must be in the request body and thus his feedback will be treated differently :
 
-- Si son observation est positionnée dans une zone de responsabilité régie par son organisation, alors cette observation est automatiquement validée (sans passer par l'étape de modération) et le rapport créé qui en découle est automatiquement accepté.
+- If his feedback is within a place of his organization, then the feedback doesn't need moderation and a report is created.
 
-- Si son observation n'est pas positionnée dans une zone de responsabilité régie par son organisation, alors son observation est refusée et une erreur 409 est retournée.
+- If his feedback is outside a place of his organization, then the feedback is refused.
 
 .. _feedbacks-normal-mode-vs-pro-mode:
 
-Mode normal vs "Mode pro"
+Normal mode vs "Pro mode"
 -------------------------
 
-Sur la figure ci-dessous, le rectangle A représente une zone de responsabilité appartenant à une organisation A, et le rectangle B représente une zone de responsabilité appartenant à une organisation B.
+On the picture below, square A represents a place belonging to organization A, and square B to organization B
 
-Chaque point représente une observation effectuée **par un utilisateur membre de l'organisation B**.
+Each dot is a feedback made by **a member of organization B**.
 
-En bleu : observations effectuées en passant l'identifiant de son organisation (correspond au "mode pro").
-En rouge : observations effectuées sans passer l'identifiant de son organisation. Ces observations sont donc identiques à celle d'un utilisateur lambda.
+In blue : feedbacks made in pro mode (pro mode set to true in the request).
+In red : feedbacks made in normal mode.
 
 .. image:: images/feedback_by_place.png
 
-.. _feedbacks-lifecyle-overview:
+.. _feedbacks-lifecycle-overview:
 
-Résumé du cycle de vie d'une observation
-----------------------------------------
+Life cycle overview of a feedback
+---------------------------------
 
 .. image:: images/feedback_workflow.png
 
 .. _feedbacks-retrieving:
 
-Récupération des observations
------------------------------
+Get feedbacks
+-------------
 
-Pour récupérer les observations :
+To get feedbacks, request the following endpoint :
 
 .. code-block:: bash
 
     GET /feedbacks
 
-Cette requête retourne uniquement les observations dont le statut est DELIVERED.
+This request only returns feedbacks whose state is DELIVERED.
 
-Plusieurs critères permettent de filtrer les observations.
+Some criteria may help filter feedbacks.
 
-**Par statut : paramètre state**
+**By state : parameter state**
 
-Par exemple, pour filtrer les observations en attente de validation, un administrateur d'application effectuera la requête :
+For example, to filter feedbacks waiting for moderation, a moderator will send the request :
 
 .. code-block:: bash
 
     GET /feedbacks?state=PENDING_REVIEW
 
-**Autour d'un point : paramètre geo_near**
+**Around a point : parameter geo_near**
 
-Exemple :
+Example :
 
 .. code-block:: bash
 
     GET /feedbacks?geo_near[radius]=1000&geo_near[geo_coordinates]=+44.8-0.5
 
-retournera les observations situées dans un rayon de 1000 mètres autour du point de latitude +44.8 et de longitude 0.5.
+will return feedbacks within a 1000 meters radius from a point at latitude +44.8 and longitude 0.5.
 
-**Dans un GeoHash : paramètre geo_hash**
+**Within a GeoHash : parameter geo_hash**
 
-GeoHash est un système de géocodage [...] basé sur une fonction de hachage qui subdivise la surface terrestre selon une grille hiérarchique. (Source : `Wikipedia <https://fr.wikipedia.org/wiki/Geohash>`_)
+Geohash is a public domain geocoding system [...] which encodes a geographic location into a short string of letters and digits. (Source : `Wikipedia <https://en.wikipedia.org/wiki/Geohash>`_)
 
-Pour plus d'informations sur GeoHash, voir :
+For more informations on Geohash, see :
 
-- `Site officiel de GeoHash <http://geohash.org/>`_
+- `GeoHash official website <http://geohash.org/>`_
 - `GeoHash explorer <http://geohash.gofreerange.com/>`_
 
-Les observations peuvent être filtrées par GeoHash de la façon suivante :
+Feedbacks may be filtered with Geohash like this :
 
 .. code-block:: bash
 
     GET /feedbacks?geo_hash[]=ezzx&geo_hash[]=ezzz
 
-retournera les observations comprises dans les geo hash ezzx et ezzz.
+This will return feedbacks between geohashes ezzx and ezzz.
 
-**Sur une période donnée : paramètres before et after**
+**By time period : parameters before and after**
 
-Exemple :
+Example :
 
 .. code-block:: bash
 
     GET /feedbacks?after=2017-01-10T00:00:00+05:00&before=2017-02-22T23:59:59+05:00
 
-retournera les observations effectuées entre le 10/01/2017 et le 22/02/2017.
+will return feedbacks made between January 10 and February 22
 
-Les dates sont écrites au format  : `ISO 8601 <https://www.iso.org/iso-8601-date-and-time-format.html>`_.
+Dates are written in format : `ISO 8601 <https://www.iso.org/iso-8601-date-and-time-format.html>`_.
 
-**Par organisation**
+**By organization**
 
 .. code-block:: bash
 
@@ -223,25 +209,21 @@ Les dates sont écrites au format  : `ISO 8601 <https://www.iso.org/iso-8601-dat
 
 .. _feedbacks-comments:
 
-Commentaires
-------------
+Comments
+--------
 
-Les utilisateurs de la communauté peuvent commenter une observation :
+Users may comment feedbacks :
 
 .. code-block:: bash
 
     POST /feedbacks/{feedback}/comments
-
-
-Exemple :
-
 .. code-block:: json
 
     {
-        "text":"Mon commentaire"
+        "text": "My comment"
     }
 
-Pour récupérer les commentaires d'une observation :
+To get comments on a feedback :
 
 .. code-block:: bash
 
@@ -249,16 +231,16 @@ Pour récupérer les commentaires d'une observation :
 
 .. _feedbacks-contributions:
 
-Soutiens
---------
+Contributions
+-------------
 
-Un utilisateur peut soutenir une contribution en effectuant la requête suivante, sans paramètres :
+A user can also support a feedback this the following request, without body :
 
 .. code-block:: bash
 
     POST /feedbacks/{feedback}/contributions
 
-Pour récupérer tous les soutiens effectués sur une observation :
+To get all supports to a feedback :
 
 .. code-block:: bash
 

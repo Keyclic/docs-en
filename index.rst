@@ -2,13 +2,13 @@
     :align: center
     :alt: logo Keyclic
 
-Documentation du service Keyclic
-==============================
+Service Keyclic Documentation
+=============================
 
-Keyclic est une application de remontée et de traitement d'observations. Elle permet à ses utilisateurs de signaler des dysfonctionnements, des problèmes techniques ou tout autre type d'information, et de remonter ces signalements aux organisations concernées.
+Keyclic is an feedback hub app. It allows its users to signal malfunctions, technical problems or every other type of problem to the right organizations.
 
-Sommaire
---------
+Content
+-------
 
 .. toctree::
     :maxdepth: 2

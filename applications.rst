@@ -3,34 +3,33 @@
 Applications
 ============
 
-Une *application* au coeur du service Keyclic permet de cloisonner les remontées d’observation suivant des domaines applicatifs.
-Cela se traduit par l’utilisation d’applications clientes ou de sites internet spécifiques à certains métiers.
+An *application* in the Keyclic service limits the resources to a single domain.
+It means the use of a specific client app or website.
+For the eponymous client of the service, the *application* is "com.keyclic.app". Every client app and website using the key will share the same partition.
+(Here: the iPhone app Keyclic, the Android app Keyclic and the website https://app.keyclic.com)
 
-Pour le client éponyme du service, l'*application* déclarée est "com.keyclic.app", toutes les applications clientes ou sites internet utilisant cette clé auront le même cloisement. (Ici : l'application iPhone Keyclic, l'application Android Keyclic et le site internet https://app.keyclic.com pour les navigateurs.)
+Other *applications* exist in the Keyclic service with different keys, it's the case of "Vinci Mon Autoroute" available on iPhone and Android.
 
-Il existe d’autres *applications* déclarées dans le service Keyclic avec d'autres clés, notamment "Vinci Mon Autoroute" disponible sur iPhone et Android.
+For example, from "Vinci Mon Autoroute":
 
-Par exemple depuis "Vinci Mon Autoroute":
+ - it is impossible to "send" a feedback sent to this *application* with the key "com.keyclic.app" and vice-versa,
 
- - il est impossible de remonter une observation à l’*application* déclarée avec la clé "com.keyclic.app" et inversement,
+ - it is impossible to list feedbacks sent to the *application* with the key "com.keyclic.app" and vice-versa.
 
- - il est impossible de lister les observations dédiées à l’*application* déclarée avec la clé "com.keyclic.app" et inversement.
+.. _moderator:
 
-.. _applications-admin:
+Moderator
+-------------------------
 
-Administrateur d'application
-----------------------------
+The *moderator* is a specific status given by the Keyclic service, who can **moderate** feedbacks from an *application* before they are sent as reports to the chosen organization.
 
-L’ *administrateur d’application* est un statut particulier donné à un utilisateur du service Keyclic qui a la possibilité de **modérer** les observations d’une *application* avant que celles-ci soient transmises, sous forme de rapports, aux organisations concernées.
+This moderation filters every feedback to avoid content "violating"/"breaking" general terms of use of an application or website. For example, pornographic content, racial discrimination, etc.
 
-Cette modération permet de filtrer toutes observations avec du contenu enfreignant les règles d’utilisation d’une application cliente ou d'un site internet. Par exemple, obstruction à la législation d’un pays (contenu pédopornographique, incitation à la haine, etc).
+Several *moderators* can moderate feedbacks of one *application*. However, a *moderator* can't moderate feedbacks from more than one *application*
 
-Plusieurs *administrateurs d'application* peuvent modérer les observations d'une *application*. Cependant un *administrateur d'application* ne peut pas modérer les observations provenant de plusieurs *applications*.
+Note: The *moderator* may not be a member of the organization it is moderating for nor a Keyclic employee.
 
-Note : L' *administrateur d'application* n'est pas obligatoirement membre d'une organisation ou n'est pas obligatoirement employé par la société Keyclic.
+Special case
+------------
 
-Cas particulier
----------------
-
-Toutes les observations ne sont pas soumises à la modération.
-C'est le cas d'une observation effectuée par un acteur de confiance. (Voir :ref:`feedbacks-organization-member`.)
+Not all feedback are moderated, those made by a trusty user are directly sent to the organization (See :ref:`feedbacks-organization-member`.)

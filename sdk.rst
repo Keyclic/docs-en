@@ -3,15 +3,15 @@
 SDK
 ===
 
-La société Keyclic propose gratuitement et librement sous licence MIT un SDK javascript.
-Ce SDK permet de développer plus rapidement des applications clientes se connectant à l'API du service Keyclic.
+The company Keyclic offers a free SDK Javascript under MIT licence.
+This SDK is useful for developing client apps connecting to the Keyclic API faster
 
-Liens utiles
+Useful links
 ------------
 
-- `Code source du SDK client javascript <https://github.com/Keyclic/app-sdk>`_
+- `SDK client Javascript source code <https://github.com/Keyclic/app-sdk>`_
 
-Utilisation
------------
+Use
+---
 
-Ce SDK est utilisé par l'application Keyclic elle-même et toutes les autres applications développées par la société Keyclic.
+The SDK is used to develop the Keyclic app and all apps developed by the company Keyclic.
