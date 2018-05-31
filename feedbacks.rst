@@ -1,6 +1,6 @@
 .. _feedbacks:
 
-feedbacks
+Feedbacks
 =========
 
 A feedback is always made in a given geographic point. This point is the most important and only mandatory component of a feedback. Optional parameters are the description, category, visibility and picture(s).
@@ -78,7 +78,7 @@ The Keyclic service doesn't just collect feedbacks, it sends them if possible, a
 Feedback moderation and life cycle
 ----------------------------------
 
-When a user creates a feedback, its state is PENDING_REVIEW : waiting moderation. A *moderator* will have to validate it (except special case :ref:`feedbacks-organization-member`).
+When a user creates a feedback, its state is PENDING_REVIEW : waiting moderation. A *moderator* will have to validate it (except special case :ref:`feedbacks-agent`).
 
 See : :ref:`technical-states`
 
@@ -107,10 +107,10 @@ To refuse a feedback :
 
 The feedback's state is REFUSED. No report is created.
 
-.. _feedbacks-organization-member:
+.. _feedbacks-agent:
 
-Feedbacks by organization member
---------------------------------
+Feedbacks by an agent
+---------------------
 
 Agents (:ref:`agents`) can post feedbacks the same way as every user. What's more, an agent can enter in "pro mode". To do so, the field "proMode" with the value "true" must be in the request body and thus his feedback will be treated differently :
 

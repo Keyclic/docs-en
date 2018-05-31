@@ -4,7 +4,7 @@ Applications
 ============
 
 An *application* in the Keyclic service limits the resources to a single domain.
-It means the use of a specific client app or website.
+It means the use of specific clients app or website.
 For the eponymous client of the service, the *application* is "com.keyclic.app". Every client app and website using the key will share the same partition.
 (Here: the iPhone app Keyclic, the Android app Keyclic and the website https://app.keyclic.com)
 
@@ -23,13 +23,13 @@ Moderator
 
 The *moderator* is a specific status given by the Keyclic service, who can **moderate** feedbacks from an *application* before they are sent as reports to the chosen organization.
 
-This moderation filters every feedback to avoid content "violating"/"breaking" general terms of use of an application or website. For example, pornographic content, racial discrimination, etc.
+This moderation filters every feedback to avoid content violating general terms of use of an application or website. For example, pornographic content, racial discrimination, etc.
 
 Several *moderators* can moderate feedbacks of one *application*. However, a *moderator* can't moderate feedbacks from more than one *application*
 
-Note: The *moderator* may not be a member of the organization it is moderating for nor a Keyclic employee.
+Note: The *moderator* may not be a member of the organization it is moderating for, nor a Keyclic employee.
 
 Special case
 ------------
 
-Not all feedback are moderated, those made by a trusty user are directly sent to the organization (See :ref:`feedbacks-organization-member`.)
+Not all feedbacks are moderated, those made by a trusty user are directly sent to the organization (See :ref:`feedbacks-agent`.)
