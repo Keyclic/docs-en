@@ -25,7 +25,7 @@ Applications and Application's key
 Every client of the API must send a key identifying his application in the request header
 
 If you are developing a client to work with an existing Keyclic application, you have to know the application's key.
-Else if you wish to develop a client for a new application, please contact Keyclic. They will create the new application, configure it and send you the corresponding key.
+Otherwise, if you wish to develop a client for a new application, please contact Keyclic. They will create the new application, configure it and send you the corresponding key.
 
 Examples of an application's key :
 
@@ -35,7 +35,7 @@ Examples of an application's key :
 
 Then every request header has to contain a X-Keyclic-App field with a value like the examples above. Refer to this paragraph :ref:`technical-requests` for the "implementation".
 
-However, simple users are shared to all Keyclic applications. Therefore, login and register endpoints are exempt of the above rule (cf : :ref:`authentication`).
+However, users accounts are shared to all Keyclic applications. Therefore, login and register endpoints are exempt of the above rule (cf : :ref:`authentication`) : these two endpoints do not require to provide an application key.
 
 .. _technical-requests:
 
@@ -61,7 +61,7 @@ but to avoid redundancy, in the following examples, we will show neither the pro
 URL's parameters
 ~~~~~~~~~~~~~~~~
 
-In this documentation, URIs variables, such as a resource identifier, a page number, etc, will be between curly brackets. For example, to get a single feedback :
+In this documentation, URIs variables, such as a resource identifier, a page number, etc, will be between curly brackets. For example, to retrieve a single feedback :
 
 .. code-block:: bash
 
@@ -73,7 +73,7 @@ In the Keyclic API, in accordance with REST principles, the filtering parameters
 
     GET /feedbacks?page={page}
 
-Moreover, for a better visibility, URI's parametes will be written as such and not in their encoded URL form :
+Moreover, for a better visibility, URI's parameters will be written as such and not in their encoded URL form :
 
 .. code-block:: bash
 
@@ -82,7 +82,7 @@ Moreover, for a better visibility, URI's parametes will be written as such and n
 Headers
 ~~~~~~~
 
-Besides `conventional HTTP/1.1 <https://tools.ietf.org/html/rfc7231#section-5>`_ headers, Keyclic API accept and in most cases require, the header **X-Keyclic-App**, corresponding
+Besides `conventional HTTP/1.1 <https://tools.ietf.org/html/rfc7231#section-5>`_ headers, Keyclic API accepts and in most cases requires, the header **X-Keyclic-App**, corresponding
 to the application used (see above : :ref:`technical-applications`). For example, to get all feedbacks from the com.keyclic.app application, the request will have to contain the following header :
 
 .. code-block:: bash
@@ -91,14 +91,14 @@ to the application used (see above : :ref:`technical-applications`). For example
 
 Every endpoint requires this header, except for login and password modification. (refer : :ref:`authentication`)
 
-Also, every request (except login, resgister and password modification) must contain the Authorization header (see : :ref:`authentication`).
+Also, every request (except login, register and password modification) must contain the Authorization header (see : :ref:`authentication`).
 
 .. _technical-format:
 
 Request and response format
 ---------------------------
 
-The only type of content accepted by the Keyclic API is JSON. The request shall contain the header :
+The only type of content accepted by the Keyclic API is JSON. Your requests must contain the header :
 
 .. code-block:: bash
 
@@ -128,7 +128,7 @@ Files are sent in base 64 to the API. Here is an example of adding an image to a
 Pagination
 ----------
 
-Endpoints sending a collection of resources can be paginated with the **page** and **limit** filters. For example, to get the second page of the feedbacks with 5 feedbacks per page :
+Endpoints requesting a collection of resources can be paginated with the **page** and **limit** filters. For example, to get the second page of the feedbacks with 5 feedbacks per page :
 
 .. code-block:: bash
 
@@ -174,7 +174,7 @@ In the future, we won't precise every time that you may paginate with the *page*
 
 .. _technical-patch:
 
-Resource modification
+Resource modification with the PATCH method
 ---------------------
 
 In the Keyclic API, resource modification is made with the `PATCH <https://tools.ietf.org/html/rfc5789>`_ method. Unlike the `PUT <https://tools.ietf.org/html/rfc7231#section-4.3.4>`_ method, `PATCH <https://tools.ietf.org/html/rfc5789>`_ allows to modify a single or some properties of a resource without sending every property of the modified resource.
@@ -189,7 +189,7 @@ Here is an example to change the property *billingEmailAddress* of an organizati
 
     {
 		    "billingEmailAddress": "test@test.com"
-	  }
+	}
 
 .. _technical-errors:
 
@@ -267,8 +267,8 @@ For example, to accept a report :
 .. code-block:: json
 
     {
-		    transition": "accept"
-	  }
+		    "transition": "accept"
+    }
 
 This request will send the following response :
 

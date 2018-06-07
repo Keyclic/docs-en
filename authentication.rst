@@ -33,9 +33,9 @@ This user gets a unique id and the role ROLE_USER, allowing him to use the API's
 Log in
 ------
 
-Log in consists in sending one's credentials to the server to get an accessToken which will be used in future requests.
+Logging is about sending credentials to the server to get an accessToken which will be used in future requests.
 
-The connection is done like this :
+The connection is done with this request:
 
 .. code-block:: bash
 
@@ -72,7 +72,7 @@ For example, to get the list of all feedbacks of the com.keyclic.app application
 
 All requests to the Keyclic API need an accessToken in the headers, except for the following endpoints :
 
-- new account (POST /security/register)
+- creating an account (POST /security/register)
 - log in (POST /security/login)
 - password change request (POST /security/password/change-request)
 - password change (POST /security/password/change/{changePasswordToken})
@@ -118,10 +118,10 @@ Then the user can change his password with :
 
 .. _authentication-user-edition:
 
-Change user settings
+Editing user data
 --------------------
 
-For settings other than password, the user will request on this endpoint :
+For data other than the password, the user will request on this endpoint :
 
 .. code-block:: bash
 
@@ -129,7 +129,7 @@ For settings other than password, the user will request on this endpoint :
 
 For more information on PATCH request, see :ref:`technical-patch`.
 
-For example, to change one's last name :
+For example, to change his last name :
 
 .. code-block:: json
 
@@ -137,4 +137,4 @@ For example, to change one's last name :
         "familyName": "Family name"
     }
 
-A user can change the following settings : his *familyName*, his *givenName*, his *image*, his *job* and his *email*.
+A user can change the following data : his *familyName*, his *givenName*, his *image*, his *job* and his *email*.
