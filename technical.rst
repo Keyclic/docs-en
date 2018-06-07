@@ -15,7 +15,7 @@ Useful links
 ------------
 
 - `API's Swagger <https://api.keyclic.com/swagger.json>`_
-- `API's Restlet technical documentation <https://keyclic.restlet.io/>`_
+- `Technical API documentation <https://app.swaggerhub.com/apis/Keyclic/keyclic/>`_
 
 .. _technical-applications:
 
