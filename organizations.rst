@@ -162,7 +162,7 @@ Categories are the business sectors of an organization. An admin can create a ne
         "icon":"fa-bug"
     }
 
-Those 3 properties can be edited with a PATCH (see : :ref:`technical-patch`) request.
+Those 3 properties can be edited with a PATCH request (see : :ref:`technical-patch`).
 
 To get all categories of the application :
 

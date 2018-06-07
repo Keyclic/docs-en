@@ -5,7 +5,7 @@ Feedbacks
 
 A feedback is always made in a given geographic point. This point is the most important and only mandatory component of a feedback. Optional parameters are the description, category, visibility and picture(s).
 
-All users can make feedbacks. A user is automatically is detected with his authentication.
+All users can make feedbacks.
 
 .. _feedbacks-creation:
 
@@ -68,7 +68,7 @@ Match with an organization
 
 The Keyclic service doesn't just collect feedbacks, it sends them if possible, as :ref:`reports`, to organizations capable of treating the feedback. Three cases are possible when transmitting a feedback :
 
-- If the feedback's coordinates aren't in a place, then no organization will receive a report on the feedback.
+- If the feedback's coordinates aren't in a place, then no organization will receive a report on this feedback.
 
 - If the feedback's coordinates are in a place, then the report is sent the the organization in charge of the place.
 
@@ -116,7 +116,7 @@ The feedback's state is REFUSED. No report is created.
 Feedbacks by an agent
 ---------------------
 
-Agents (:ref:`agents`) can post feedbacks the same way as every user. What's more, an agent can enter in "pro mode". To do so, the field "proMode" with the value "true" must be in the request body and thus his feedback will be treated differently :
+Agents (:ref:`agents`) can post feedbacks the same way as every user. What's more, an agent can enter in "pro mode". For this, just put in the body of the request, the "proMode" field with the value "true". Thus, his feedback will be treated differently :
 
 - If his feedback is within a place of his organization, then the feedback doesn't need moderation and a report is created.
 
@@ -127,7 +127,7 @@ Agents (:ref:`agents`) can post feedbacks the same way as every user. What's mor
 Normal mode vs "Pro mode"
 -------------------------
 
-On the picture below, square A represents a place belonging to organization A, and square B to organization B.
+On the figure below, square A represents a place belonging to organization A, and square B to organization B.
 
 Each dot is a feedback made by **a member of organization B**.
 
@@ -158,7 +158,7 @@ This request only returns feedbacks whose state is DELIVERED.
 
 Some criteria may help filter feedbacks.
 
-**By state : parameter state**
+**By state : state parameter**
 
 For example, to filter feedbacks waiting for moderation, a moderator will send the request :
 
@@ -166,7 +166,7 @@ For example, to filter feedbacks waiting for moderation, a moderator will send t
 
     GET /feedbacks?state=PENDING_REVIEW
 
-**Around a point : parameter geo_near**
+**Around a point : geo_near parameter**
 
 Example :
 
@@ -176,7 +176,7 @@ Example :
 
 will return feedbacks within a 1000 meters radius from a point at latitude +44.8 and longitude 0.5.
 
-**Within a GeoHash : parameter geo_hash**
+**Within a GeoHash : geo_hash parameter**
 
 Geohash is a public domain geocoding system [...] which encodes a geographic location into a short string of letters and digits. (Source : `Wikipedia <https://en.wikipedia.org/wiki/Geohash>`_)
 
@@ -193,7 +193,7 @@ Feedbacks may be filtered with Geohash like this :
 
 This will return feedbacks between geohashes ezzx and ezzz.
 
-**By time period : parameters before and after**
+**By time period : before and after parameters**
 
 Example :
 
@@ -203,7 +203,7 @@ Example :
 
 will return feedbacks made between January 10 and February 22
 
-Dates are written in format : `ISO 8601 <https://www.iso.org/iso-8601-date-and-time-format.html>`_.
+Dates are written in the format : `ISO 8601 <https://www.iso.org/iso-8601-date-and-time-format.html>`_.
 
 **By organization**
 

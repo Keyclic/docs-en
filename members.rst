@@ -25,7 +25,7 @@ A user who gets affiliated with an organization becomes a *member*. A *member* p
 This role adds the following possibilities :
 
 - Being listed by admins,
-- Receive assignment to an intervention,
+- Receive an assignment to an intervention,
 - Edit an intervention (if assigned to said member) : change name, add pictures, change state, etc.
 
 All members share those rights and other may stack if the member has more roles.
@@ -37,7 +37,9 @@ Note : A user can be member of several organizations and an organization can hav
 Administrator
 -------------
 
-Every user can create his own organization. The user who created the organization becomes member and admin of that organization, his role is *Admin*.
+Every user can create his own organization.
+
+The user who created the organization becomes member and admin of that organization, his role is *Admin*.
 
 The admin has the following permissions added to his membership privileges :
 
@@ -59,14 +61,14 @@ Note : A user can be *Admin* of several organizations and an organization can ha
 Agent
 -----
 
-« Agent » is a special role meant to members who only make feedbacks for their organization.
+« Agent » is a special role suitable to members who only make feedbacks for their organization.
 
 An agent has the possibility to :
 
 - Activate Pro Mode (cf infra: Feedback made in Pro Mode)
 - Make private feedbacks
 
-**Note : A user can only be an Agent of one organization but an organization can have several Agents.**
+**Note : A user can only be an *Agent* of one organization but an organization can have several *Agents*.**
 
 .. _members-stat:
 
@@ -88,7 +90,7 @@ Note : A user can have the role *Export* for several organizations and an organi
 
 .. _members-retrieving:
 
-List users
+Retrieving users
 ----------
 
 To get all of the application's users :
