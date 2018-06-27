@@ -24,3 +24,4 @@ Content
     reports
     applications
     notifications
+    integration
