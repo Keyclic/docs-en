@@ -18,8 +18,8 @@ When a user created a feedback, he may choose to make it public or private. If p
 Furthermore, the moment the feedback is created, it is transmitted to a moderator to be moderated, to avoid illicit content, except in certain situations (see : :ref:`feedbacks-life-cycle`).
 Once validated, a report is created and sent to the chosen organization.
 
-A report corresponds to one and only one feedback. An admin has access to all the reports sent to its organization. For each reports, he can create has many interventions as necessary and assign them to members of his organization. Another way is to delegate the report to a partner organization that will deal with it
-Once every intervention resolved, the admin will then close the report and consider the problem resolved.
+A report corresponds to one and only one feedback. An admin has access to all the reports sent to its organization. For each reports, he can create has many operations as necessary and assign them to members of his organization. Another way is to delegate the report to a partner organization that will deal with it
+Once every operation resolved, the admin will then close the report and consider the problem resolved.
 
 Useful links
 ------------
@@ -42,7 +42,7 @@ Report
 ~~~~~~~
 
 Each feedback, once moderated by a moderator, creates a report. A report contains the informations from the feedback and can only be seen and modified by the organization it was sent to.
-The report is the "professional" side of the observation. The organization works from this report: creation of interventions, state, delegation, etc.
+The report is the "professional" side of the observation. The organization works from this report: creation of operations, state, delegation, etc.
 
 See :ref:`reports`
 

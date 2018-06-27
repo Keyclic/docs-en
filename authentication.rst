@@ -33,7 +33,7 @@ This user gets a unique id and the role ROLE_USER, allowing him to use the API's
 Log in
 ------
 
-Logging is about sending credentials to the server to get an accessToken which will be used in future requests.
+Log in consists in sending one's credentials to the server to get an accessToken which will be used in future requests.
 
 The connection is done with this request:
 
@@ -72,7 +72,7 @@ For example, to get the list of all feedbacks of the com.keyclic.app application
 
 All requests to the Keyclic API need an accessToken in the headers, except for the following endpoints :
 
-- creating an account (POST /security/register)
+- create an account (POST /security/register)
 - log in (POST /security/login)
 - password change request (POST /security/password/change-request)
 - password change (POST /security/password/change/{changePasswordToken})
@@ -119,7 +119,7 @@ Then the user can change his password with :
 .. _authentication-user-edition:
 
 Editing user data
---------------------
+-----------------
 
 For data other than the password, the user will request on this endpoint :
 
@@ -129,7 +129,7 @@ For data other than the password, the user will request on this endpoint :
 
 For more information on PATCH request, see :ref:`technical-patch`.
 
-For example, to change his last name :
+For example, to change its last name :
 
 .. code-block:: json
 

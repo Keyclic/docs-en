@@ -7,7 +7,7 @@ In the Keyclic app, an organization is an entity such as a company, a corporatio
 
 A :ref:`members-no-roles` is a user affiliated with an organization. One or more members can be administrators of that organization (see : :ref:`members-admin`). An organization has at least one administrator.
 
-An :ref:`members-admin` can manage the scope of intervention of the organization by creating categories and places.
+An :ref:`members-admin` can manage the scope of operation of the organization by creating categories and places.
 When a user creates a feedback, geographic coordinates of that feedback are always automatically given. Thus, the app can display all organizations and their category in that place.
 Then the user can choose which organization he wants to take care of the problem.
 

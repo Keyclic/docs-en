@@ -116,7 +116,7 @@ The feedback's state is REFUSED. No report is created.
 Feedbacks by an agent
 ---------------------
 
-Agents (:ref:`agents`) can post feedbacks the same way as every user. What's more, an agent can enter in "pro mode". For this, just put in the body of the request, the "proMode" field with the value "true". Thus, his feedback will be treated differently :
+Agents (:ref:`agents`) can post feedbacks the same way as every user. What's more, an agent can enter in "pro mode". To do so, just put in the body of the request, the "proMode" field with the value "true". Thus, his feedback will be treated differently :
 
 - If his feedback is within a place of his organization, then the feedback doesn't need moderation and a report is created.
 

@@ -25,7 +25,7 @@ Applications and Application's key
 Every client of the API must send a key identifying his application in the request header
 
 If you are developing a client to work with an existing Keyclic application, you have to know the application's key.
-Otherwise, if you wish to develop a client for a new application, please contact Keyclic. They will create the new application, configure it and send you the corresponding key.
+Else if you wish to develop a client for a new application, please contact Keyclic. They will create the new application, configure it and send you the corresponding key.
 
 Examples of an application's key :
 
@@ -35,7 +35,7 @@ Examples of an application's key :
 
 Then every request header has to contain a X-Keyclic-App field with a value like the examples above. Refer to this paragraph :ref:`technical-requests` for the "implementation".
 
-However, users accounts are shared to all Keyclic applications. Therefore, login and register endpoints are exempt of the above rule (cf : :ref:`authentication`) : these two endpoints do not require to provide an application key.
+However, users accounts are shared to all Keyclic applications. Therefore, login and register endpoints do not require to provide an application key (cf : :ref:`authentication`).
 
 .. _technical-requests:
 
@@ -98,7 +98,7 @@ Also, every request (except login, register and password modification) must cont
 Request and response format
 ---------------------------
 
-The only type of content accepted by the Keyclic API is JSON. Your requests must contain the header :
+The only type of content accepted by the Keyclic API is JSON. Requests must contain the header :
 
 .. code-block:: bash
 
@@ -174,7 +174,7 @@ In the future, we won't precise every time that you may paginate with the *page*
 
 .. _technical-patch:
 
-Resource modification with the PATCH method
+Resource modification
 ---------------------
 
 In the Keyclic API, resource modification is made with the `PATCH <https://tools.ietf.org/html/rfc5789>`_ method. Unlike the `PUT <https://tools.ietf.org/html/rfc7231#section-4.3.4>`_ method, `PATCH <https://tools.ietf.org/html/rfc5789>`_ allows to modify a single or some properties of a resource without sending every property of the modified resource.

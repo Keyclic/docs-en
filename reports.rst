@@ -44,15 +44,15 @@ For example, to change the report's state from NEW to ACCEPTED, the admin will s
 
 A report can only be closed (state CLOSED) if :
 
-- Every operation linked to this report has been either resolved or refused (see paragraph below :ref:`reports-interventions`).
+- Every operation linked to this report has been either resolved or refused (see paragraph below :ref:`reports-operations`).
 - Every report delegated to a partner organization from the original report must be closed (see paragraph below :ref:`reports-delegation`).
 
-.. _reports-interventions:
+.. _reports-operations:
 
-Interventions
--------------
+Operations
+----------
 
-An intervention is an action assigned to a member of the organization in relation with a report.
+An operation is an action assigned to a member of the organization in relation with a report.
 
 This endpoint sends back all operations resulting from a report :
 
@@ -60,9 +60,9 @@ This endpoint sends back all operations resulting from a report :
 
     GET /reports/{report}/operations
 
-**Creation and modification of an intervention**
+**Creation and modification of an operation**
 
-An admin creates an intervention on a report with this request :
+An admin creates an operation on a report with this request :
 
 .. code-block:: bash
 
@@ -71,14 +71,14 @@ An admin creates an intervention on a report with this request :
 .. code-block:: json
 
     {
-        "description":"Intervention's description",
-        "name":"Intervention's name",
+        "description":"operation's description",
+        "name":"operation's name",
         "report":"cb7118b5-a821-4cf2-9475-0c0d0efdb8d0"
     }
 
-A newly created intervention has the state NEW.
+A newly created operation has the state NEW.
 
-One or more images can be added to an intervention :
+One or more images can be added to an operation :
 
 .. code-block:: bash
 
@@ -90,7 +90,7 @@ One or more images can be added to an intervention :
         "image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QIVDRUfvq7u+AAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAAUSURBVAjXY3wrIcGABJgYUAGpfABZiwEnbOeFrwAAAABJRU5ErkJggg=="
     }
 
-The description of an intervention can be modified with the request :
+The description of an operation can be modified with the request :
 
 .. code-block:: bash
 
@@ -104,7 +104,7 @@ The description of an intervention can be modified with the request :
 
 **Assignment**
 
-To assign an intervention to a member, the admin sends the following request :
+To assign an operation to a member, the admin sends the following request :
 
 .. code-block:: bash
 
@@ -115,12 +115,12 @@ To assign an intervention to a member, the admin sends the following request :
         "member": "{member}",
     }
 
-where {member} is the ID of the member who is assigned the intervention.
+where {member} is the member's id the operation is assigned to.
 
 **Accept or refuse**
 
-Once assigned, the intervention can be either accepted or refused, by the assigned member or by the admin.
-To accept the intervention :
+Once assigned, the operation can be either accepted or refused, by the assigned member or by the admin.
+To accept the operation :
 
 .. code-block:: bash
 
@@ -132,17 +132,17 @@ To accept the intervention :
         "transition": "accept"
     }
 
-**In progress and closing intervention**
+**In progress and closing operation**
 
-After being accepted, the intervention will be changed to "in progress" then "resolved", either by the assigned member or the admin.
+After being accepted, the operation will be changed to "in progress" then "resolved", either by the assigned member or the admin.
 
-**Life cycle of an intervention**
+**Life cycle of an operation**
 
 .. image:: images/operation_workflow.png
 
 **Comments**
 
-It's possible to comment an intervention :
+It's possible to comment an operation :
 
 .. code-block:: bash
 
@@ -154,15 +154,15 @@ It's possible to comment an intervention :
         "text":"My comment"
     }
 
-To get all comments on an intervention :
+To get all comments on an operation :
 
 .. code-block:: bash
 
     GET /operations/{operation}/comments
 
-**Logs of an intervention**
+**Logs of an operation**
 
-An admin can see the history of an intervention :
+An admin can see the history of an operation :
 
 .. code-block:: bash
 
@@ -193,7 +193,7 @@ To delegate a report, an admin sends the following request :
 where {organization} is the organization's id delegating the report.
 And a31d9ab7-9476-45f2-8cc7-033bf40bbcfa is the receiving organization's id.
 
-Delegating a report doesn't mean this report is transfered, the initial report isn't modified but a new "child" report is created and attributed to the partner organization. This new report will be treated by the partner organization the same way every other report is: state change, interventions, assignments, etc, until it is closed.
+Delegating a report doesn't mean this report is transfered, the initial report isn't modified but a new "child" report is created and attributed to the partner organization. This new report will be treated by the partner organization the same way every other report is: state change, operations, assignments, etc, until it is closed.
 
 The partner organization may itself delegate this report to one of its partners and so on. For the initial report to be closed, the child must be closed.
 
