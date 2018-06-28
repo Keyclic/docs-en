@@ -31,15 +31,15 @@ Event types
 +------------------------------+-----------------------------------------------------------+
 | Event                        | Description                                               |
 +==============================+===========================================================+
-| **report_created**           | New report created                                        |
+| **reportCreated**            | New report created                                        |
 +------------------------------+-----------------------------------------------------------+
-| **report_state_changed**     | Report's state changed                                    |
+| **reportStateChanged**       | Report's state changed                                    |
 +------------------------------+-----------------------------------------------------------+
-| **operation_created**        | New operation created                                     |
+| **operationCreated**         | New operation created                                     |
 +------------------------------+-----------------------------------------------------------+
-| **operation_state_changed**  | Operation's state changed                                 |
+| **operationStateChanged**    | Operation's state changed                                 |
 +------------------------------+-----------------------------------------------------------+
-| **operation_removed**        | Operation removed                                         |
+| **operationRemoved**         | Operation removed                                         |
 +------------------------------+-----------------------------------------------------------+
 
 Receipt of webhook notification
@@ -54,7 +54,7 @@ it is possible to run through resources linked or embedded thanks to the HAL rep
 .. code-block:: json
 
     {
-        "event":"report_created",
+        "event": "reportCreated",
         "payload": {
             "type": "Report",
             "id": "b0e7e28f-5b91-4c73-875e-8f34aa03553a",
