@@ -23,7 +23,7 @@ Webhooks can be created upon request from our service.
 
 A webhook consists of the event for which you wish to be notified and a URL to where the notification should be sent.
 
-Several webhooks can be created unlimitedly for each event type (several webhooks can be created for a specific event type).
+Several webhooks can be created unlimitedly for each event type.
 
 Event types
 -----------
