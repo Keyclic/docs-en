@@ -117,21 +117,6 @@ To assign an operation to a member, the admin sends the following request :
 
 where {member} is the member's id the operation is assigned to.
 
-**Accept or refuse**
-
-Once assigned, the operation can be either accepted or refused, by the assigned member or by the admin.
-To accept the operation :
-
-.. code-block:: bash
-
-    PATCH /operations/{operation}/state
-
-.. code-block:: json
-
-    {
-        "transition": "accept"
-    }
-
 **In progress and closing operation**
 
 After being accepted, the operation will be changed to "in progress" then "resolved", either by the assigned member or the admin.
