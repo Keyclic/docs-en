@@ -119,7 +119,7 @@ where {member} is the member's id the operation is assigned to.
 
 **In progress and closing operation**
 
-After being accepted, the operation will be changed to "in progress" then "resolved", either by the assigned member or the admin.
+After being assigned, the operation will be changed to "in progress" then "resolved", either by the assigned member or the admin.
 
 **Life cycle of an operation**
 
