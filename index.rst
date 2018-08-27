@@ -7,7 +7,7 @@
 Service Keyclic Documentation
 =============================
 
-Keyclic is an feedback hub app. It allows its users to signal malfunctions, technical problems or every other type of problem to the right organizations.
+Keyclic is a rise and process feedback app. It allows its users to signal malfunctions, technical problems or every other type of problem to the right organizations.
 
 Content
 -------

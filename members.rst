@@ -65,7 +65,7 @@ Agent
 
 An agent has the possibility to :
 
-- Activate Pro Mode (cf infra: Feedback made in Pro Mode)
+- Activate Pro Mode (cf :ref:`feedbacks-agent`)
 
 **Note : A user can only be an Agent of one organization but an organization can have several Agents.**
 
