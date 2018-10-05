@@ -16,7 +16,7 @@ Creation
 
     POST /feedbacks/issues
 
-Minimal example of a feedback :
+Minimal example of a feedback:
 
 .. code-block:: json
 
@@ -31,7 +31,7 @@ Minimal example of a feedback :
         }
     }
 
-Complete example :
+Complete example:
 
 .. code-block:: json
 
@@ -49,7 +49,7 @@ Complete example :
         "visibility": "VISIBILITY_PUBLIC"
     }
 
-Then the user can add one or more pictures to his feedback :
+Then the user can add one or more pictures to his feedback:
 
 .. code-block:: bash
 
@@ -81,7 +81,7 @@ For more informations about places, see :ref:`organizations-places`.
 Feedbacks by an agent
 ---------------------
 
-Agents (:ref:`members-agent`) can post feedbacks the same way as every user. What's more, an agent can enter in "pro mode". To do so, just put in the body of the request, the "proMode" field with the value "true". Thus, his feedback will be treated differently :
+Agents (:ref:`members-agent`) can post feedbacks the same way as every user. What's more, an agent can enter in "pro mode". To do so, just put in the body of the request, the "proMode" field with the value "true". Thus, his feedback will be treated differently:
 
 - If his feedback is within a place of his organization, a report is created.
 
@@ -96,8 +96,8 @@ On the figure below, square A represents a place belonging to organization A, an
 
 Each dot is a feedback made by **a member of organization B**.
 
-- In blue : feedbacks made in pro mode (pro mode set to true in the request).
-- In red : feedbacks made in normal mode.
+- In blue: feedbacks made in normal mode.
+- In red: feedbacks made in pro mode (pro mode set to true in the request).
 
 .. image:: images/feedback_by_place.png
 
@@ -113,7 +113,7 @@ Life cycle overview
 Get feedbacks
 -------------
 
-To get feedbacks, request the following endpoint :
+To get feedbacks, request the following endpoint:
 
 .. code-block:: bash
 
@@ -123,17 +123,17 @@ This request only returns feedbacks whose state is DELIVERED.
 
 Some criteria may help filter feedbacks.
 
-**By state : state parameter**
+**By state: state parameter**
 
-For example, to filter delivered feedbacks, a user will send the request :
+For example, to filter delivered feedbacks, a user will send the request:
 
 .. code-block:: bash
 
     GET /feedbacks?state=DELIVERED
 
-**Around a point : geo_near parameter**
+**Around a point: geo_near parameter**
 
-Example :
+Example:
 
 .. code-block:: bash
 
@@ -141,16 +141,16 @@ Example :
 
 will return feedbacks within a 1000 meters radius from a point at latitude +44.8 and longitude 0.5.
 
-**Within a GeoHash : geo_hash parameter**
+**Within a GeoHash: geo_hash parameter**
 
-Geohash is a public domain geocoding system [...] which encodes a geographic location into a short string of letters and digits. (Source : `Wikipedia <https://en.wikipedia.org/wiki/Geohash>`_)
+Geohash is a public domain geocoding system [...] which encodes a geographic location into a short string of letters and digits. (Source: `Wikipedia <https://en.wikipedia.org/wiki/Geohash>`_)
 
-For more informations on Geohash, see :
+For more informations on Geohash, see:
 
 - `GeoHash official website <http://geohash.org/>`_
 - `GeoHash explorer <http://geohash.gofreerange.com/>`_
 
-Feedbacks may be filtered with Geohash like this :
+Feedbacks may be filtered with Geohash like this:
 
 .. code-block:: bash
 
@@ -158,9 +158,9 @@ Feedbacks may be filtered with Geohash like this :
 
 This will return feedbacks between geohashes ezzx and ezzz.
 
-**By time period : before and after parameters**
+**By time period: before and after parameters**
 
-Example :
+Example:
 
 .. code-block:: bash
 
@@ -168,7 +168,7 @@ Example :
 
 will return feedbacks made between January 10 and February 22
 
-Dates are written in the format : `ISO 8601 <https://www.iso.org/iso-8601-date-and-time-format.html>`_.
+Dates are written in the format: `ISO 8601 <https://www.iso.org/iso-8601-date-and-time-format.html>`_.
 
 **By organization**
 
@@ -181,7 +181,7 @@ Dates are written in the format : `ISO 8601 <https://www.iso.org/iso-8601-date-a
 Comments
 --------
 
-Users may comment feedbacks :
+Users may comment feedbacks:
 
 .. code-block:: bash
 
@@ -193,7 +193,7 @@ Users may comment feedbacks :
         "text": "My comment"
     }
 
-To get comments on a feedback :
+To get comments on a feedback:
 
 .. code-block:: bash
 
@@ -204,13 +204,13 @@ To get comments on a feedback :
 Contributions
 -------------
 
-A user can also support a feedback this the following request, without body :
+A user can also support a feedback this the following request, without body:
 
 .. code-block:: bash
 
     POST /feedbacks/{feedback}/contributions
 
-To get all supports to a feedback :
+To get all supports to a feedback:
 
 .. code-block:: bash
 
