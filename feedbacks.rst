@@ -72,7 +72,7 @@ The Keyclic service doesn't just collect feedbacks, it sends them if possible, a
 
 - If the feedback's coordinates are in a place, then the report is sent the the organization in charge of the place.
 
-- If the feedback's coordinates are in a place where two or more organizations can take action, and the user didn't specify a specific category or a specific business activity, then several reports are generated and sent to all organizations in the place. The first one to accept will treat the problem.
+- If the feedback's coordinates are in a place where two or more organizations can take action, and the user didn't specify a specific business activity, then several reports are generated and sent to all organizations in the place. The first one to accept will treat the problem.
 
 For more informations about places, see :ref:`organizations-places`.
 
