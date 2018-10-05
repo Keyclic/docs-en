@@ -13,8 +13,6 @@ Notifications sent by action
 +--------------------------------+-------------------------+------------------------------------------------------------------------+
 | Action                         | Notification Type       | Target                                                                 |
 +================================+=========================+========================================================================+
-| Feedback to moderate           | Push smartphone         | Moderators                                                             |
-+--------------------------------+-------------------------+------------------------------------------------------------------------+
 | Feedback is commented          | Push smartphone         | The user who made the feedback                                         |
 |                                |                         |                                                                        |
 |                                |                         | Users who commented or supported to the feedback                       |

@@ -72,44 +72,9 @@ The Keyclic service doesn't just collect feedbacks, it sends them if possible, a
 
 - If the feedback's coordinates are in a place, then the report is sent the the organization in charge of the place.
 
-- If the feedback's coordinates are in a place where two or more organizations can take action, and the user didn't specify a category, then several reports are generated and sent to all organizations in the place. The first one to accept will treat the problem.
+- If the feedback's coordinates are in a place where two or more organizations can take action, and the user didn't specify a specific category or a specific business activity, then several reports are generated and sent to all organizations in the place. The first one to accept will treat the problem.
 
 For more informations about places, see :ref:`organizations-places`.
-
-.. _feedbacks-lifecycle:
-
-Moderation and life cycle
--------------------------
-
-When a user creates a feedback, its state is PENDING_REVIEW : waiting moderation. A *moderator* will have to validate it (except special case : :ref:`feedbacks-agent`).
-
-See : :ref:`technical-states`
-
-A *moderator* validates a feedback with the endpoint :
-
-.. code-block:: bash
-
-    PATCH /feedbacks/{feedback}/state
-
-.. code-block:: json
-
-    {
-        "transition": "accept"
-    }
-
-The feedback's state is now DELIVERED and a report is created.
-
-See : :ref:`reports`
-
-To refuse a feedback :
-
-.. code-block:: bash
-
-    {
-        "transition": "refuse"
-    }
-
-The feedback's state is REFUSED. No report is created.
 
 .. _feedbacks-agent:
 
@@ -118,7 +83,7 @@ Feedbacks by an agent
 
 Agents (:ref:`members-agent`) can post feedbacks the same way as every user. What's more, an agent can enter in "pro mode". To do so, just put in the body of the request, the "proMode" field with the value "true". Thus, his feedback will be treated differently :
 
-- If his feedback is within a place of his organization, then the feedback doesn't need moderation and a report is created.
+- If his feedback is within a place of his organization, a report is created.
 
 - If his feedback is outside a place of his organization, then the feedback is refused.
 
@@ -136,7 +101,7 @@ Each dot is a feedback made by **a member of organization B**.
 
 .. image:: images/feedback_by_place.png
 
-.. _feedbacks-lifecycle-overview:
+.. _feedbacks-lifecycle:
 
 Life cycle overview
 -------------------
@@ -160,11 +125,11 @@ Some criteria may help filter feedbacks.
 
 **By state : state parameter**
 
-For example, to filter feedbacks waiting for moderation, a moderator will send the request :
+For example, to filter delivered feedbacks, a user will send the request :
 
 .. code-block:: bash
 
-    GET /feedbacks?state=PENDING_REVIEW
+    GET /feedbacks?state=DELIVERED
 
 **Around a point : geo_near parameter**
 

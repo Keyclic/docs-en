@@ -3,7 +3,7 @@
 Reports
 ========
 
-When a feedback is accepted, after moderation by a moderator or automatically (see : :ref:`feedbacks-lifecycle`), a report is created.
+When a feedback is delivered (see : :ref:`feedbacks-lifecycle`), a report is created.
 
 An admin gets all his organization's reports with :
 
