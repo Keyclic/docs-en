@@ -1,6 +1,6 @@
 `Version française <http://docs.keyclic.com/fr/master>`_
 
-.. image:: http://keyclic.com/assets/images/logo.svg
+.. image:: https://keyclic.com/wp-content/uploads/2018/10/testlogosite-1-e1540889176655.jpg
     :align: center
     :alt: logo Keyclic
 
