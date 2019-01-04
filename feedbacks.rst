@@ -49,6 +49,8 @@ Complete example:
         "visibility": "VISIBILITY_PUBLIC"
     }
 
+**The default visibility of the observation is VISIBILITY_PRIVATE if this one is not provided in the payload.**
+
 Then the user can add one or more pictures to his feedback:
 
 .. code-block:: bash
