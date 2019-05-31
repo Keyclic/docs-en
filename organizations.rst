@@ -126,9 +126,8 @@ An admin can create places, corresponding to areas where the organization can ta
                     ]
                 }
             ],
-            "srid": 5555
-        },
-        "elevation": 1
+            "srid": 4326
+        }
     }
 
 To get all places of the application :
