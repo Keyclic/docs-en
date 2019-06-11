@@ -83,7 +83,7 @@ For more informations about places, see :ref:`organizations-places`.
 Feedbacks by an agent
 ---------------------
 
-Agents (:ref:`members-agent`) can post feedbacks the same way as every user. What's more, an agent can enter in "pro mode". To do so, just put in the body of the request, the "proMode" field with the value "true". Thus, his feedback will be treated differently:
+An :ref:`members-agent` can post feedbacks the same way as every user. What's more, an agent can enter in "pro mode". To do so, just put in the body of the request, the "proMode" field with the value "true". Thus, his feedback will be treated differently:
 
 - If his feedback is within a place of his organization, a report is created.
 

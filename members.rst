@@ -7,30 +7,14 @@ When a user is part of an organization, he may receive from none to five roles, 
 
 These are five roles :
 
-- No role - Member
 - Administrator
 - Agent
+- Operator
 - Analytic
 - Export
 
 A user may be part of several organizations, therefore his roles among the organizations may differ and are completely independent.
-
-.. _members-no-roles:
-
-No role - Member
-----------------
-
 A user who gets affiliated with an organization becomes a *member*. A *member* possesses the same basic functionalities as a simple user.
-
-This role adds the following possibilities :
-
-- Being listed by admins,
-- Receive an assignment to an operation,
-- Edit an operation (if assigned to said member) : change name, add pictures, change state, etc.
-
-All members share those rights and other may stack if the member has more roles.
-
-Note : A user can be member of several organizations and an organization can have several members.
 
 .. _members-admin:
 
@@ -41,10 +25,10 @@ Every user can create his own organization.
 
 The user who created the organization becomes member and admin of that organization, his role is *Admin*.
 
-The admin has the following permissions added to his membership privileges :
+The admin has the following permissions and privileges :
 
 - Add new members,
-- Change the member's roles,
+- Change members' roles,
 - Manage the organization's categories,
 - Manage the organization's places,
 - Manage the organization's partners,
@@ -54,7 +38,7 @@ See : :ref:`organizations`
 
 See : :ref:`reports`
 
-Note : A user can be *Admin* of several organizations and an organization can have several *Admins*.
+Note : A user can be *ORGANIZATION:ADMIN* of several organizations and an organization can have several *ORGANIZATION:ADMIN*.
 
 .. _members-agent:
 
@@ -67,16 +51,31 @@ An agent has the possibility to :
 
 - Activate Pro Mode (cf :ref:`feedbacks-agent`)
 
-**Note : A user can only be an Agent of one organization but an organization can have several Agents.**
+**Note : A user can only be an ORGANIZATION:AGENT of one organization but an organization can have several ORGANIZATION:AGENT.**
 
-.. _members-stat:
+.. _members-operator:
 
-Analytic
+Operator
 --------
 
-The role *Analytic* allows the member to access the organization statistics.
+This role adds the following possibilities :
 
-Note : A user can have the role *Analytic* for several organizations and an organization can have several members with the role *Analytic*.
+- Receive an assignment to an operation,
+- Edit an operation (if assigned to that member) : change name, add pictures, change state, etc.
+
+All members share those rights and other may stack if the member has more roles.
+
+Note : An ORGANIZATION:OPERATOR can be member of several organizations and an organization can have several ORGANIZATION:OPERATOR.
+
+
+.. _members-analytics:
+
+Analytics
+---------
+
+The role *Analytics* allows the member to access the organization statistics.
+
+Note : A user can have the role *ORGANIZATION:ANALYTICS* for several organizations and an organization can have several members with the role *ORGANIZATION:ANALYTICS*.
 
 .. _members-export:
 
@@ -85,7 +84,7 @@ Export
 
 The role *Export* allows the member to export his organization's reports to the Excel format.
 
-Note : A user can have the role *Export* for several organizations and an organization can have several members with the role *Export*.
+Note : A user can have the role *ORGANIZATION:EXPORT* for several organizations and an organization can have several members with the role *ORGANIZATION:EXPORT*.
 
 .. _members-retrieving:
 
@@ -114,7 +113,7 @@ To get members of an organization :
 
 .. code-block:: bash
 
-    GET /people?organization={organization}
+    GET /organizations/{organization}/members
 
 .. _members-example:
 
@@ -193,11 +192,13 @@ Retrieving a user resource will display information about his membership(s), lik
         }
     }
 
-This shows :
+This json shows the user :
 
-1. He is a member of an organization whose id is 84d36093-b8bc-47ad-bc8a-a043b3e301a9
-2. He has the role ORGANIZATION:ADMIN : he is an admin of the organization 84d36093-b8bc-47ad-bc8a-a043b3e301a9
-3. He has the role ORGANIZATION:AGENT : he is an agent of the organization 84d36093-b8bc-47ad-bc8a-a043b3e301a9
-4. The user id (5020c6ea-ca07-42d1-994f-d90b86703b1a) is not the same as the member id (b0e7e28f-5b91-4c73-875e-8f34aa03553a)
-5. He is part of only one organization
-6. He joined the organization February 27, 2018
+- is a member of an organization whose id is 84d36093-b8bc-47ad-bc8a-a043b3e301a9
+- has the role ORGANIZATION:ADMIN : he is an admin of the organization 84d36093-b8bc-47ad-bc8a-a043b3e301a9
+- has the role ORGANIZATION:AGENT : he is an agent of the organization 84d36093-b8bc-47ad-bc8a-a043b3e301a9
+- is part of only one organization
+- joined the organization February 27, 2018
+
+CAUTION: The user id (5020c6ea-ca07-42d1-994f-d90b86703b1a) is not the same as the member id (b0e7e28f-5b91-4c73-875e-8f34aa03553a).
+The API identifies a member and a user as two differents entities.
