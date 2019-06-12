@@ -65,7 +65,7 @@ This role adds the following possibilities :
 
 All members share those rights and other may stack if the member has more roles.
 
-Note : An ORGANIZATION:OPERATOR can be member of several organizations and an organization can have several ORGANIZATION:OPERATOR.
+Note : An *ORGANIZATION:OPERATOR* can be member of several organizations and an organization can have several *ORGANIZATION:OPERATOR*.
 
 
 .. _members-analytics:

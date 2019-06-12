@@ -256,13 +256,13 @@ Response (partial) :
 
 In the example above, the report has a state NEW and the possible actions on its state are *accept* and *refuse*.
 
-Actions on the state of a resource is made through the PATCH method, with the path and the new value.
+Actions on the state of a resource is made through the POST method, with the path and the new value.
 
 For example, to accept a report :
 
 .. code-block:: bash
 
-    PATCH /reports/{report}/state
+    POST /reports/{report}/workflow/transition
 
 .. code-block:: json
 
