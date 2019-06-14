@@ -5,7 +5,7 @@ Reports
 
 When a feedback is delivered (see : :ref:`feedbacks-lifecycle`), a report is created.
 
-An admin gets all his organization's reports with :
+An :ref:`members-admin` gets all his organization's reports with :
 
 .. code-block:: bash
 
@@ -42,10 +42,7 @@ For example, to change the report's state from NEW to ACCEPTED, the admin will s
         "transition": "accept"
     }
 
-A report can only be closed (state CLOSED) if :
-
-- Every operation linked to this report has been either resolved or refused (see paragraph below :ref:`reports-operations`).
-- Every report delegated to a partner organization from the original report must be closed (see paragraph below :ref:`reports-delegation`).
+A report can only be closed (state CLOSED), if every operation linked to this report has been either resolved or refused (see paragraph below :ref:`reports-operations`).
 
 .. _reports-operations:
 
@@ -117,7 +114,7 @@ To assign an operation to a member, the admin sends the following request :
 
 where {member} is the member's id the operation is assigned to.
 
-**In progress and closing operation**
+**In progress and resolved operation**
 
 After being assigned, the operation will be changed to "in progress" then "resolved", either by the assigned member or the admin.
 
@@ -178,9 +175,9 @@ To delegate a report, an admin sends the following request :
 where {organization} is the organization's id delegating the report.
 And a31d9ab7-9476-45f2-8cc7-033bf40bbcfa is the receiving organization's id.
 
-Delegating a report doesn't mean this report is transfered, the initial report isn't modified but a new "child" report is created and attributed to the partner organization. This new report will be treated by the partner organization the same way every other report is: state change, operations, assignments, etc, until it is closed.
+This report is shared between the delegating organization and the receiving organization. The latter will treat this report the same has every other report.
 
-The partner organization may itself delegate this report to one of its partners and so on. For the initial report to be closed, the child must be closed.
+The partner organization may itself delegate this report to one of its partners and so on.
 
 .. _reports-export:
 
