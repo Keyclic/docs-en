@@ -5,11 +5,12 @@ Organizations
 
 In the Keyclic app, an organization is an entity such as a company, a corporation, an association, a school, etc. to which feedbacks can be sent to be treated.
 
-A :ref:`members-no-roles` is a user affiliated with an organization. One or more members can be administrators of that organization (see : :ref:`members-admin`). An organization has at least one administrator.
+One or more members can be :ref:`members-admin` of that organization. An organization has at least one administrator.
 
 An :ref:`members-admin` can manage the scope of operation of the organization by creating categories and places.
-When a user creates a feedback, geographic coordinates of that feedback are always automatically given. Thus, the app can display all organizations and their category in that place.
-Then the user can choose which organization he wants to take care of the problem.
+When a user creates a feedback, geographic coordinates of that feedback are always automatically transmitted.
+Thus, the app can display all organizations in that place.
+Then the user has acces to information helping it choose the most fitting organization.
 
 .. _organizations-creation:
 
@@ -61,13 +62,13 @@ To add a new member to the organization :
         "person":"63d07fc5-f4e6-471c-a8cc-3c3f227c8c2d"
     }
 
-This endpoint is reserved to a user who is ORGANIZATION:ADMIN and member of the organization {organization}.
+This endpoint is reserved to a user who is :ref:`members-admin` and member of the organization {organization}.
 
 To get organization's members :
 
 .. code-block:: bash
 
-    GET /people?organization={organization}
+    GET /organizations/{organization}/members
 
 To remove a member from the organization, an admin will request :
 
@@ -75,14 +76,12 @@ To remove a member from the organization, an admin will request :
 
     DELETE /organizations/{organization}/members/{member}
 
-For more informations on the role ORGANIZATION:ADMIN and its privileges, see :ref:`members-admin`.
-
 .. _organizations-places:
 
 Manage places
 -------------
 
-An admin can create places, corresponding to areas where the organization can take actions :
+An :ref:`members-admin` can create places, corresponding to areas where the organization can take actions :
 
 .. code-block:: bash
 
@@ -147,7 +146,8 @@ This request may be filtered by organization and/or geographic points :
 Manage categories
 -----------------
 
-Categories are the business sectors of an organization. An admin can create a new category with a name, a color and an icon. The icon is chosen from `Font Awesome <http://fontawesome.io/icons/>`_.
+Categories are the business sectors of an organization. An :ref:`members-admin` can create a new category with a name, a color and an icon.
+The icon is chosen from `Font Awesome <http://fontawesome.io/icons/>`_.
 
 .. code-block:: bash
 
@@ -183,7 +183,8 @@ Manage partnership
 An organization can have partners, i.e organizations affiliated with it. This relationship is one-sided :
 an organization A is a partner of organization B, but B is not necessarily one of B.
 
-The partnership means that an admin can delegate a report to a partner organization. In the previous example, A can delegate a report to B, but B cannot delegate to A.
+The partnership means that an :ref:`members-admin` can delegate a report to a partner organization.
+In the previous example, A can delegate a report to B, but B cannot delegate to A.
 
 To add a new partner to the organization, an admin will send the request :
 

@@ -41,13 +41,17 @@ Notifications sent by action
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
 | Operation assigned             | Member assigned to the operation                        |   Y   |   Y   |   Y   |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
-| Operation resolved             | Administrators                                          |   Y   |   Y   |   N   |
+| Operation resolved             | Administrator who created the operation                 |   Y   |   Y   |   N   |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
 | Intervention remind            | Administrators                                          |   Y   |   Y   |   N   |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
 | Operation is commented         | Member assigned to the operation                        |   Y   |   Y   |   N   |
+|                                | Administrator who created the operation                 |       |       |       |
 |                                |                                                         |       |       |       |
 |                                | Members who commented the operation                     |       |       |       |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
 | Feedback to review             | Reviewer                                                |   Y   |   Y   |   N   |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
+
+When a user makes an action which triggers a notification where it would be targeted. This user doesn't receive a notification.
+For example, if a member assigned to an operation leaves a comment on the operation, it doesn't receive a notification saying it commented the operation.
