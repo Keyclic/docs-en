@@ -13,44 +13,46 @@ Notifications sent by action
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
 | Action                         | Target                                                  | Push  | Wall  | Mail  |
 +================================+=========================================================+=======+=======+=======+
-| User register                  | The user                                                |   N   |   N   |   Y   |
+| User register                  | The user                                                |   ⨯   |   ⨯   |   ✓   |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
-| Password change request        | The user                                                |   N   |   N   |   Y   |
+| Password change request        | The user                                                |   ⨯   |   ⨯   |   ✓   |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
-| Feedback is commented          | The user who made the feedback                          |   Y   |   Y   |   N   |
+| Feedback is commented          | The user who made the feedback                          |   ✓   |   ✓   |   ⨯   |
 |                                |                                                         |       |       |       |
 |                                | Users who commented or supported to the feedback        |       |       |       |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
-| Report is created              | Administrators                                          |   Y   |   Y   |   Y   |
+| Report is created              | Administrators                                          |   ✓   |   ✓   |   ✓   |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
-| Report is accepted             | The user who made the feedback                          |   Y   |   Y   |   N   |
+| Report is accepted             | The user who made the feedback                          |   ✓   |   ✓   |   ⨯   |
 |                                |                                                         |       |       |       |
 |                                | Users who commented or supported to the feedback        |       |       |       |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
-| Report is closed               | The user who made the feedback                          |   Y   |   Y   |   N   |
+| Report is closed               | The user who made the feedback                          |   ✓   |   ✓   |   ⨯   |
 |                                |                                                         |       |       |       |
 |                                | Users who commented or supported to the feedback        |       |       |       |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
-| Report is refused              | The user who made the feedback                          |   Y   |   Y   |   N   |
+| Report is refused              | The user who made the feedback                          |   ✓   |   ✓   |   ⨯   |
 |                                |                                                         |       |       |       |
 |                                | Users who commented or supported to the feedback        |       |       |       |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
-| Report is delegated            | Administrators                                          |   Y   |   Y   |   Y   |
+| Report is delegated            | Administrators                                          |   ✓   |   ✓   |   ✓   |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
-| Add document to report         | Administrators                                          |   Y   |   Y   |   N   |
+| Add document to report         | Administrators                                          |   ✓   |   ✓   |   ⨯   |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
-| Operation assigned             | Member assigned to the operation                        |   Y   |   Y   |   Y   |
+| Operation assigned             | Member assigned to the operation                        |   ✓   |   ✓   |   ✓   |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
-| Operation resolved             | Administrator who created the operation                 |   Y   |   Y   |   N   |
+| Operation resolved             | Administrator who created the operation                 |   ✓   |   ✓   |   ⨯   |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
-| Intervention remind            | Administrators                                          |   Y   |   Y   |   N   |
+| Operation remind               | Opertors                                                |   ✓   |   ✓   |   ⨯   |
+|                                |                                                         |       |       |       |
+|                                | The user who made the feedback                          |       |       |       |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
-| Operation is commented         | Member assigned to the operation                        |   Y   |   Y   |   N   |
+| Operation is commented         | Member assigned to the operation                        |   ✓   |   ✓   |   ⨯   |
 |                                | Administrator who created the operation                 |       |       |       |
 |                                |                                                         |       |       |       |
 |                                | Members who commented the operation                     |       |       |       |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
-| Feedback to review             | Reviewer                                                |   Y   |   Y   |   N   |
+| Feedback to review             | Reviewer                                                |   ✓   |   ✓   |   ⨯   |
 +--------------------------------+---------------------------------------------------------+-------+-------+-------+
 
 When a user makes an action which triggers a notification where it would be targeted. This user doesn't receive a notification.
